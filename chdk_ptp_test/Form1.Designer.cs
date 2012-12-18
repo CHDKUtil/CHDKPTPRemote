@@ -48,6 +48,8 @@ namespace chdk_ptp_test
             this.outputlabel = new System.Windows.Forms.Label();
             this.overlaybutton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // devicecombobox
@@ -99,7 +101,6 @@ namespace chdk_ptp_test
             // 
             // getimagebutton
             // 
-            this.getimagebutton.Enabled = false;
             this.getimagebutton.Location = new System.Drawing.Point(12, 118);
             this.getimagebutton.Name = "getimagebutton";
             this.getimagebutton.Size = new System.Drawing.Size(75, 23);
@@ -175,7 +176,6 @@ namespace chdk_ptp_test
             // 
             // overlaybutton
             // 
-            this.overlaybutton.Enabled = false;
             this.overlaybutton.Location = new System.Drawing.Point(93, 118);
             this.overlaybutton.Name = "overlaybutton";
             this.overlaybutton.Size = new System.Drawing.Size(75, 23);
@@ -193,11 +193,22 @@ namespace chdk_ptp_test
             this.label2.TabIndex = 8;
             this.label2.Text = "Mode:";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.Location = new System.Drawing.Point(15, 166);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(311, 203);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 406);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.overlaybutton);
             this.Controls.Add(this.outputlabel);
             this.Controls.Add(this.label3);
@@ -217,7 +228,7 @@ namespace chdk_ptp_test
             this.Name = "Form1";
             this.Text = "CHDK PTP Test";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -240,6 +251,7 @@ namespace chdk_ptp_test
         private System.Windows.Forms.Label outputlabel;
         private System.Windows.Forms.Button overlaybutton;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
