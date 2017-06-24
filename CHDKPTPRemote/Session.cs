@@ -74,7 +74,8 @@ namespace CHDKPTPRemote
 
                 if (!get_error && type == CHDK_ScriptMsgType.PTP_CHDK_S_MSGTYPE_RET) // return info!
                 {
-                    switch ((CHDK_ScriptDataType)subtype)
+                    CHDK_ScriptDataType chdkSubtype = (CHDK_ScriptDataType)subtype;
+                    switch (chdkSubtype)
                     {
                         case CHDK_ScriptDataType.PTP_CHDK_TYPE_BOOLEAN:
                             return (data[0] | data[1] | data[2] | data[3]) != 0;
@@ -86,7 +87,7 @@ namespace CHDKPTPRemote
                             else
                                 return (new ASCIIEncoding()).GetString(data);
                         default:
-                            throw new Exception("script returned unsupported data type: " + type.ToString());
+                            throw new Exception("script returned unsupported data type: " + chdkSubtype.ToString());
                     }
                 }
 
