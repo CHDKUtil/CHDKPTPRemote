@@ -77,6 +77,8 @@ namespace CHDKPTPRemote
                     CHDK_ScriptDataType chdkSubtype = (CHDK_ScriptDataType)subtype;
                     switch (chdkSubtype)
                     {
+                        case CHDK_ScriptDataType.PTP_CHDK_TYPE_NIL:
+                            return null;
                         case CHDK_ScriptDataType.PTP_CHDK_TYPE_BOOLEAN:
                             return (data[0] | data[1] | data[2] | data[3]) != 0;
                         case CHDK_ScriptDataType.PTP_CHDK_TYPE_INTEGER:
