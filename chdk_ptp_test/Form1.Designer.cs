@@ -49,6 +49,7 @@ namespace chdk_ptp_test
             this.overlaybutton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.propertygrid = new System.Windows.Forms.PropertyGrid();
+            this.rebootbutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // devicecombobox
@@ -224,11 +225,23 @@ namespace chdk_ptp_test
             this.propertygrid.TabIndex = 15;
             this.propertygrid.Visible = false;
             // 
+            // rebootbutton
+            // 
+            this.rebootbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rebootbutton.Location = new System.Drawing.Point(332, 39);
+            this.rebootbutton.Name = "rebootbutton";
+            this.rebootbutton.Size = new System.Drawing.Size(75, 23);
+            this.rebootbutton.TabIndex = 16;
+            this.rebootbutton.Text = "Reboot";
+            this.rebootbutton.UseVisualStyleBackColor = true;
+            this.rebootbutton.Click += new System.EventHandler(this.rebootbutton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 406);
+            this.Controls.Add(this.rebootbutton);
             this.Controls.Add(this.propertygrid);
             this.Controls.Add(this.overlaybutton);
             this.Controls.Add(this.outputlabel);
@@ -273,6 +286,7 @@ namespace chdk_ptp_test
         private System.Windows.Forms.Button overlaybutton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PropertyGrid propertygrid;
+        private System.Windows.Forms.Button rebootbutton;
     }
 }
 

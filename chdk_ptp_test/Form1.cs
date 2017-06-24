@@ -139,12 +139,17 @@ namespace chdk_ptp_test
                 }
 
                 LogLine("closed.");
-                statuslabel.Text = "Not connected";
-                connected_device = null;
-                connect_button.Visible = true;
-                disconnectbutton.Visible = false;
-                connected = false;
+                post_disconnect();
             }
+        }
+
+        private void post_disconnect()
+        {
+            statuslabel.Text = "Not connected";
+            connected_device = null;
+            connect_button.Visible = true;
+            disconnectbutton.Visible = false;
+            connected = false;
         }
 
         private void getimagebutton_Click(object sender, EventArgs e)
@@ -207,6 +212,25 @@ namespace chdk_ptp_test
             }
             disconnectbutton.PerformClick();
             LogLine("shut down complete.");
+        }
+
+        private void rebootbutton_Click(object sender, EventArgs e)
+        {
+            if (!connected)
+                return;
+
+            LogLine("rebooting... (may result in exceptions due to loss of connection)");
+            try
+            {
+                session.ExecuteScript("reboot()");
+            }
+            catch (Exception ex)
+            {
+                LogLine("exception: " + ex.Message + Environment.NewLine + ex.StackTrace.ToString());
+            }
+            post_disconnect();
+            refresh_camera_list();
+            LogLine("reboot complete.");
         }
 
         private void execbutton_Click(object sender, EventArgs e)
