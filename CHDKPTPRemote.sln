@@ -5,8 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_app", "chdk_ptp_test\t
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B04125F6-4EED-400D-AC2A-4C76DE5E660F}"
 	ProjectSection(SolutionItems) = preProject
-		Documentation.txt = Documentation.txt
 		LICENSE_1_0.txt = LICENSE_1_0.txt
+		README.txt = README.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHDKPTPRemote", "CHDKPTPRemote\CHDKPTPRemote.csproj", "{62CD0AE5-1219-4F3D-ACA3-1C40E5028803}"
