@@ -233,6 +233,7 @@ namespace chdk_ptp_test
                 else if (r is IDictionary)
                 {
                     outputlabel.Text = "(table)";
+                    propertygrid.PropertySort = PropertySort.NoSort;
                     propertygrid.SelectedObject = new PropertyGridDictionaryAdapter((IDictionary)r);
                 }
                 else

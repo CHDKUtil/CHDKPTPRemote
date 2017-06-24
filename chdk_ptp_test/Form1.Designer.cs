@@ -215,13 +215,12 @@ namespace chdk_ptp_test
             this.propertygrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.propertygrid.CommandsVisibleIfAvailable = false;
             this.propertygrid.HelpVisible = false;
             this.propertygrid.Location = new System.Drawing.Point(12, 147);
             this.propertygrid.Name = "propertygrid";
-            this.propertygrid.PropertySort = System.Windows.Forms.PropertySort.NoSort;
             this.propertygrid.Size = new System.Drawing.Size(476, 247);
             this.propertygrid.TabIndex = 15;
-            this.propertygrid.ToolbarVisible = false;
             this.propertygrid.Visible = false;
             // 
             // Form1
