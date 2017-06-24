@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace chdk_ptp_test
 {
-    class PropertyGridDictionaryAdapter : ICustomTypeDescriptor
+    class PropertyGridDictionaryAdapter : CustomTypeDescriptor
     {
         private readonly IDictionary _dictionary;
 
@@ -13,62 +13,12 @@ namespace chdk_ptp_test
             _dictionary = d;
         }
 
-        public string GetComponentName()
-        {
-            return TypeDescriptor.GetComponentName(this, true);
-        }
-
-        public EventDescriptor GetDefaultEvent()
-        {
-            return TypeDescriptor.GetDefaultEvent(this, true);
-        }
-
-        public string GetClassName()
-        {
-            return TypeDescriptor.GetClassName(this, true);
-        }
-
-        public EventDescriptorCollection GetEvents()
-        {
-            return TypeDescriptor.GetEvents(this, true);
-        }
-
-        public TypeConverter GetConverter()
-        {
-            return TypeDescriptor.GetConverter(this, true);
-        }
-
-        public object GetPropertyOwner(PropertyDescriptor pd)
+        public override object GetPropertyOwner(PropertyDescriptor pd)
         {
             return _dictionary;
         }
 
-        public AttributeCollection GetAttributes()
-        {
-            return TypeDescriptor.GetAttributes(this, true);
-        }
-
-        public object GetEditor(Type editorBaseType)
-        {
-            return TypeDescriptor.GetEditor(this, editorBaseType, true);
-        }
-
-        public PropertyDescriptor GetDefaultProperty()
-        {
-            return null;
-        }
-
-        public EventDescriptorCollection GetEvents(Attribute[] attributes)
-        {
-            return TypeDescriptor.GetEvents(this, attributes, true);
-        }
-
-        public PropertyDescriptorCollection GetProperties()
-        {
-            return ((ICustomTypeDescriptor)this).GetProperties(new Attribute[0]);
-        }
-
-        public PropertyDescriptorCollection GetProperties(Attribute[] attributes)
+        public override PropertyDescriptorCollection GetProperties(Attribute[] attributes)
         {
             ArrayList properties = new ArrayList();
             foreach (DictionaryEntry e in _dictionary)
