@@ -50,7 +50,7 @@ namespace chdk_ptp_test
             catch (Exception ex)
             {
                 LogLine("exception: " + ex.Message + Environment.NewLine + ex.StackTrace.ToString());
-                MessageBox.Show("could not open PTP session: " + ex.Message + "\n\n" + ex.StackTrace.ToString());
+                MessageBox.Show("could not open PTP session: " + ex.Message + "\n\n" + ex.StackTrace.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -63,7 +63,7 @@ namespace chdk_ptp_test
         private void UsbDevice_UsbErrorEvent(object sender, UsbError e)
         {
             LogLine("usb error: " + e.ToString());
-            MessageBox.Show("UsbError: " + e.ToString());
+            MessageBox.Show("UsbError: " + e.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public Form1()
@@ -90,13 +90,13 @@ namespace chdk_ptp_test
         {
             if (connected)
             {
-                MessageBox.Show("Already opened a device!", "Error");
+                MessageBox.Show("Already opened a device!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (devicecombobox.SelectedItem == null)
             {
-                MessageBox.Show("No device selected!", "Error");
+                MessageBox.Show("No device selected!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -114,7 +114,7 @@ namespace chdk_ptp_test
                 connected = false;
                 connected_device = null;
                 session = null;
-                MessageBox.Show("could not open PTP session: " + ex.Message + "\n\n" + ex.StackTrace.ToString());
+                MessageBox.Show("could not open PTP session: " + ex.Message + "\n\n" + ex.StackTrace.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             LogLine("connected.");
@@ -171,7 +171,7 @@ namespace chdk_ptp_test
             catch (Exception ex)
             {
                 LogLine("exception: " + ex.Message + Environment.NewLine + ex.StackTrace.ToString());
-                MessageBox.Show("could not switch to record mode: " + ex.Message + "\n\n" + ex.StackTrace.ToString());
+                MessageBox.Show("could not switch to record mode: " + ex.Message + "\n\n" + ex.StackTrace.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             LogLine("done.");
@@ -190,7 +190,7 @@ namespace chdk_ptp_test
             catch (Exception ex)
             {
                 LogLine("exception: " + ex.Message + Environment.NewLine + ex.StackTrace.ToString());
-                MessageBox.Show("could not switch to playback mode: " + ex.Message + "\n\n" + ex.StackTrace.ToString());
+                MessageBox.Show("could not switch to playback mode: " + ex.Message + "\n\n" + ex.StackTrace.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             LogLine("done.");
