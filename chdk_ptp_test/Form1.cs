@@ -119,6 +119,8 @@ namespace chdk_ptp_test
             }
             LogLine("connected.");
             connected = true;
+            connect_button.Visible = false;
+            disconnectbutton.Visible = true;
             statuslabel.Text = "Connected to: " + connected_device.ToString();
         }
 
@@ -139,6 +141,8 @@ namespace chdk_ptp_test
                 LogLine("closed.");
                 statuslabel.Text = "Not connected";
                 connected_device = null;
+                connect_button.Visible = true;
+                disconnectbutton.Visible = false;
                 connected = false;
             }
         }

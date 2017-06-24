@@ -86,12 +86,13 @@ namespace chdk_ptp_test
             // disconnectbutton
             // 
             this.disconnectbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.disconnectbutton.Location = new System.Drawing.Point(332, 39);
+            this.disconnectbutton.Location = new System.Drawing.Point(332, 10);
             this.disconnectbutton.Name = "disconnectbutton";
             this.disconnectbutton.Size = new System.Drawing.Size(75, 23);
-            this.disconnectbutton.TabIndex = 3;
+            this.disconnectbutton.TabIndex = 1;
             this.disconnectbutton.Text = "Disconnect";
             this.disconnectbutton.UseVisualStyleBackColor = true;
+            this.disconnectbutton.Visible = false;
             this.disconnectbutton.Click += new System.EventHandler(this.disconnectbutton_Click);
             // 
             // statuslabel
