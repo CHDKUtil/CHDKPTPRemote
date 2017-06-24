@@ -15,6 +15,7 @@ using System.IO;
 using LibUsbDotNet;
 using CHDKPTP;
 using CHDKPTPRemote;
+using System.Collections;
 
 namespace chdk_ptp_test
 {
@@ -229,10 +230,16 @@ namespace chdk_ptp_test
                 {
                     outputlabel.Text = (string)r;
                 }
+                else if (r is IDictionary)
+                {
+                    outputlabel.Text = "(table)";
+                    propertygrid.SelectedObject = new PropertyGridDictionaryAdapter((IDictionary)r);
+                }
                 else
                 {
                     outputlabel.Text = "(unsupported type)";
                 }
+                propertygrid.Visible = r is IDictionary;
             }
             catch (Exception ex)
             {

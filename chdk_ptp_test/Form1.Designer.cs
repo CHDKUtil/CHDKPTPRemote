@@ -48,6 +48,7 @@ namespace chdk_ptp_test
             this.outputlabel = new System.Windows.Forms.Label();
             this.overlaybutton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.propertygrid = new System.Windows.Forms.PropertyGrid();
             this.SuspendLayout();
             // 
             // devicecombobox
@@ -193,11 +194,23 @@ namespace chdk_ptp_test
             this.label2.TabIndex = 8;
             this.label2.Text = "Mode:";
             // 
+            // propertygrid
+            // 
+            this.propertygrid.HelpVisible = false;
+            this.propertygrid.Location = new System.Drawing.Point(12, 147);
+            this.propertygrid.Name = "propertygrid";
+            this.propertygrid.PropertySort = System.Windows.Forms.PropertySort.NoSort;
+            this.propertygrid.Size = new System.Drawing.Size(476, 247);
+            this.propertygrid.TabIndex = 15;
+            this.propertygrid.ToolbarVisible = false;
+            this.propertygrid.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 406);
+            this.Controls.Add(this.propertygrid);
             this.Controls.Add(this.overlaybutton);
             this.Controls.Add(this.outputlabel);
             this.Controls.Add(this.label3);
@@ -240,6 +253,7 @@ namespace chdk_ptp_test
         private System.Windows.Forms.Label outputlabel;
         private System.Windows.Forms.Button overlaybutton;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PropertyGrid propertygrid;
     }
 }
 
