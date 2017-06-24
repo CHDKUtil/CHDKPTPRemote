@@ -86,6 +86,18 @@ namespace CHDKPTPRemote
                                 return data;
                             else
                                 return (new ASCIIEncoding()).GetString(data);
+                        case CHDK_ScriptDataType.PTP_CHDK_TYPE_TABLE:
+                            string str = Encoding.ASCII.GetString(data);
+                            string[] split = str.Split('\n');
+                            Dictionary<string, string> table = new Dictionary<string, string>();
+                            foreach (var substr in split)
+                            {
+                                string[] kvp = substr.Split('\t');
+                                if (kvp.Length != 2)
+                                    break;
+                                table.Add(kvp[0], kvp[1]);
+                            }
+                            return table;
                         default:
                             throw new Exception("script returned unsupported data type: " + chdkSubtype.ToString());
                     }
