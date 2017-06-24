@@ -53,6 +53,8 @@ namespace chdk_ptp_test
             // 
             // devicecombobox
             // 
+            this.devicecombobox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.devicecombobox.FormattingEnabled = true;
             this.devicecombobox.Location = new System.Drawing.Point(12, 12);
             this.devicecombobox.Name = "devicecombobox";
@@ -61,6 +63,7 @@ namespace chdk_ptp_test
             // 
             // connect_button
             // 
+            this.connect_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.connect_button.Location = new System.Drawing.Point(332, 10);
             this.connect_button.Name = "connect_button";
             this.connect_button.Size = new System.Drawing.Size(75, 23);
@@ -71,6 +74,7 @@ namespace chdk_ptp_test
             // 
             // refreshbutton
             // 
+            this.refreshbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.refreshbutton.Location = new System.Drawing.Point(413, 10);
             this.refreshbutton.Name = "refreshbutton";
             this.refreshbutton.Size = new System.Drawing.Size(75, 23);
@@ -81,6 +85,7 @@ namespace chdk_ptp_test
             // 
             // disconnectbutton
             // 
+            this.disconnectbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.disconnectbutton.Location = new System.Drawing.Point(332, 39);
             this.disconnectbutton.Name = "disconnectbutton";
             this.disconnectbutton.Size = new System.Drawing.Size(75, 23);
@@ -91,6 +96,8 @@ namespace chdk_ptp_test
             // 
             // statuslabel
             // 
+            this.statuslabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.statuslabel.AutoSize = true;
             this.statuslabel.Location = new System.Drawing.Point(12, 44);
             this.statuslabel.Name = "statuslabel";
@@ -111,6 +118,7 @@ namespace chdk_ptp_test
             // 
             // recordbutton
             // 
+            this.recordbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.recordbutton.Location = new System.Drawing.Point(332, 118);
             this.recordbutton.Name = "recordbutton";
             this.recordbutton.Size = new System.Drawing.Size(75, 23);
@@ -121,6 +129,7 @@ namespace chdk_ptp_test
             // 
             // playbackbutton
             // 
+            this.playbackbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.playbackbutton.Location = new System.Drawing.Point(413, 118);
             this.playbackbutton.Name = "playbackbutton";
             this.playbackbutton.Size = new System.Drawing.Size(75, 23);
@@ -131,6 +140,7 @@ namespace chdk_ptp_test
             // 
             // shutdownbutton
             // 
+            this.shutdownbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.shutdownbutton.Location = new System.Drawing.Point(413, 39);
             this.shutdownbutton.Name = "shutdownbutton";
             this.shutdownbutton.Size = new System.Drawing.Size(75, 23);
@@ -141,6 +151,7 @@ namespace chdk_ptp_test
             // 
             // execbutton
             // 
+            this.execbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.execbutton.Location = new System.Drawing.Point(413, 68);
             this.execbutton.Name = "execbutton";
             this.execbutton.Size = new System.Drawing.Size(75, 23);
@@ -151,6 +162,8 @@ namespace chdk_ptp_test
             // 
             // scriptedit
             // 
+            this.scriptedit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.scriptedit.Location = new System.Drawing.Point(12, 70);
             this.scriptedit.Name = "scriptedit";
             this.scriptedit.Size = new System.Drawing.Size(395, 20);
@@ -168,6 +181,8 @@ namespace chdk_ptp_test
             // 
             // outputlabel
             // 
+            this.outputlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.outputlabel.AutoSize = true;
             this.outputlabel.Location = new System.Drawing.Point(88, 97);
             this.outputlabel.Name = "outputlabel";
@@ -187,6 +202,7 @@ namespace chdk_ptp_test
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(289, 123);
             this.label2.Name = "label2";
@@ -196,6 +212,9 @@ namespace chdk_ptp_test
             // 
             // propertygrid
             // 
+            this.propertygrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.propertygrid.HelpVisible = false;
             this.propertygrid.Location = new System.Drawing.Point(12, 147);
             this.propertygrid.Name = "propertygrid";
