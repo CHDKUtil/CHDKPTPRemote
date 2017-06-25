@@ -166,5 +166,14 @@ namespace CHDKPTPRemote
 
             return buf;
         }
+
+        public byte[] GetMemory(uint addr, int size)
+        {
+            byte[] buf;
+
+            _session.CHDK_GetMemory(addr, size, out buf);
+
+            return buf;
+        }
     }
 }
