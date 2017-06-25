@@ -309,7 +309,7 @@ namespace chdk_ptp_test
                 return;
 
             uint address;
-            if (!uint.TryParse(scriptedit.Text, out address))
+            try
             {
                 if (scriptedit.Text.StartsWith("0x"))
                 {
@@ -317,9 +317,13 @@ namespace chdk_ptp_test
                 }
                 else
                 {
-                    outputlabel.Text = "Invalid addresss";
-                    return;
+                    address = Convert.ToUInt32(scriptedit.Text);
                 }
+            }
+            catch (Exception ex)
+            {
+                outputlabel.Text = ex.Message;
+                return;
             }
 
             outputlabel.Text = $"(0x{address:X})";
