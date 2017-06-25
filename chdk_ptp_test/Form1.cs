@@ -4,18 +4,14 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Collections;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using LibUsbDotNet;
 using CHDKPTP;
 using CHDKPTPRemote;
-using System.Collections;
+using Be.Windows.Forms;
 
 namespace chdk_ptp_test
 {
@@ -269,6 +265,7 @@ namespace chdk_ptp_test
                     outputlabel.Text = "(unsupported type)";
                 }
                 propertygrid.Visible = r is IDictionary;
+                hexbox.Visible = false;
             }
             catch (Exception ex)
             {
@@ -304,6 +301,32 @@ namespace chdk_ptp_test
                 e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                 e.Graphics.DrawImage(live_overlay, getimagebutton.Left, getimagebutton.Bottom + 10, display_width, display_height);
             }
+        }
+
+        private void getmemorybutton_Click(object sender, EventArgs e)
+        {
+            if (!connected)
+                return;
+
+            uint address;
+            if (!uint.TryParse(scriptedit.Text, out address))
+            {
+                if (scriptedit.Text.StartsWith("0x"))
+                {
+                    address = Convert.ToUInt32(scriptedit.Text, 16);
+                }
+                else
+                {
+                    outputlabel.Text = "Invalid addresss";
+                    return;
+                }
+            }
+
+            outputlabel.Text = $"(0x{address:X})";
+            byte[] buffer = session.GetMemory(address, 4096);
+            hexbox.LineInfoOffset = address / hexbox.BytesPerLine;
+            hexbox.ByteProvider = new DynamicByteProvider(buffer);
+            hexbox.Visible = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)

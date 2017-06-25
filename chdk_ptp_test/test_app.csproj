@@ -125,6 +125,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Be.Windows.Forms.HexBox\Be.Windows.Forms.HexBox.csproj">
+      <Project>{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}</Project>
+      <Name>Be.Windows.Forms.HexBox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CHDKPTPRemote\CHDKPTPRemote.csproj">
       <Project>{62CD0AE5-1219-4F3D-ACA3-1C40E5028803}</Project>
       <Name>CHDKPTPRemote</Name>
