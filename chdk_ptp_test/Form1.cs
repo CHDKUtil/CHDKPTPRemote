@@ -323,7 +323,7 @@ namespace chdk_ptp_test
             }
 
             outputlabel.Text = $"(0x{address:X})";
-            byte[] buffer = session.GetMemory(address, 4096);
+            byte[] buffer = session.GetMemory(address, (int)Math.Min(4096u, uint.MaxValue - address + 1));
             hexbox.LineInfoOffset = address / hexbox.BytesPerLine;
             hexbox.ByteProvider = new DynamicByteProvider(buffer);
             hexbox.Visible = true;
