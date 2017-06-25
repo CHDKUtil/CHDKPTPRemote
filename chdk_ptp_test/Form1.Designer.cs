@@ -52,6 +52,7 @@ namespace chdk_ptp_test
             this.hexbox = new Be.Windows.Forms.HexBox();
             this.rebootbutton = new System.Windows.Forms.Button();
             this.getmemorybutton = new System.Windows.Forms.Button();
+            this.hexscrollbar = new System.Windows.Forms.VScrollBar();
             this.SuspendLayout();
             // 
             // devicecombobox
@@ -61,13 +62,13 @@ namespace chdk_ptp_test
             this.devicecombobox.FormattingEnabled = true;
             this.devicecombobox.Location = new System.Drawing.Point(12, 12);
             this.devicecombobox.Name = "devicecombobox";
-            this.devicecombobox.Size = new System.Drawing.Size(458, 21);
+            this.devicecombobox.Size = new System.Drawing.Size(474, 21);
             this.devicecombobox.TabIndex = 0;
             // 
             // connect_button
             // 
             this.connect_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.connect_button.Location = new System.Drawing.Point(476, 10);
+            this.connect_button.Location = new System.Drawing.Point(492, 10);
             this.connect_button.Name = "connect_button";
             this.connect_button.Size = new System.Drawing.Size(75, 23);
             this.connect_button.TabIndex = 1;
@@ -78,7 +79,7 @@ namespace chdk_ptp_test
             // refreshbutton
             // 
             this.refreshbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.refreshbutton.Location = new System.Drawing.Point(557, 10);
+            this.refreshbutton.Location = new System.Drawing.Point(573, 10);
             this.refreshbutton.Name = "refreshbutton";
             this.refreshbutton.Size = new System.Drawing.Size(75, 23);
             this.refreshbutton.TabIndex = 2;
@@ -89,7 +90,7 @@ namespace chdk_ptp_test
             // disconnectbutton
             // 
             this.disconnectbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.disconnectbutton.Location = new System.Drawing.Point(476, 10);
+            this.disconnectbutton.Location = new System.Drawing.Point(492, 10);
             this.disconnectbutton.Name = "disconnectbutton";
             this.disconnectbutton.Size = new System.Drawing.Size(75, 23);
             this.disconnectbutton.TabIndex = 1;
@@ -123,7 +124,7 @@ namespace chdk_ptp_test
             // recordbutton
             // 
             this.recordbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.recordbutton.Location = new System.Drawing.Point(476, 118);
+            this.recordbutton.Location = new System.Drawing.Point(492, 118);
             this.recordbutton.Name = "recordbutton";
             this.recordbutton.Size = new System.Drawing.Size(75, 23);
             this.recordbutton.TabIndex = 6;
@@ -134,7 +135,7 @@ namespace chdk_ptp_test
             // playbackbutton
             // 
             this.playbackbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.playbackbutton.Location = new System.Drawing.Point(557, 118);
+            this.playbackbutton.Location = new System.Drawing.Point(573, 118);
             this.playbackbutton.Name = "playbackbutton";
             this.playbackbutton.Size = new System.Drawing.Size(75, 23);
             this.playbackbutton.TabIndex = 7;
@@ -145,7 +146,7 @@ namespace chdk_ptp_test
             // shutdownbutton
             // 
             this.shutdownbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.shutdownbutton.Location = new System.Drawing.Point(557, 39);
+            this.shutdownbutton.Location = new System.Drawing.Point(573, 39);
             this.shutdownbutton.Name = "shutdownbutton";
             this.shutdownbutton.Size = new System.Drawing.Size(75, 23);
             this.shutdownbutton.TabIndex = 9;
@@ -156,7 +157,7 @@ namespace chdk_ptp_test
             // execbutton
             // 
             this.execbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.execbutton.Location = new System.Drawing.Point(557, 68);
+            this.execbutton.Location = new System.Drawing.Point(573, 68);
             this.execbutton.Name = "execbutton";
             this.execbutton.Size = new System.Drawing.Size(75, 23);
             this.execbutton.TabIndex = 10;
@@ -170,7 +171,7 @@ namespace chdk_ptp_test
             | System.Windows.Forms.AnchorStyles.Right)));
             this.scriptedit.Location = new System.Drawing.Point(12, 70);
             this.scriptedit.Name = "scriptedit";
-            this.scriptedit.Size = new System.Drawing.Size(539, 20);
+            this.scriptedit.Size = new System.Drawing.Size(555, 20);
             this.scriptedit.TabIndex = 11;
             this.scriptedit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.scriptedit_KeyPress);
             // 
@@ -208,7 +209,7 @@ namespace chdk_ptp_test
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(433, 123);
+            this.label2.Location = new System.Drawing.Point(449, 123);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 8;
@@ -223,7 +224,7 @@ namespace chdk_ptp_test
             this.propertygrid.HelpVisible = false;
             this.propertygrid.Location = new System.Drawing.Point(12, 147);
             this.propertygrid.Name = "propertygrid";
-            this.propertygrid.Size = new System.Drawing.Size(620, 271);
+            this.propertygrid.Size = new System.Drawing.Size(636, 271);
             this.propertygrid.TabIndex = 15;
             this.propertygrid.Visible = false;
             // 
@@ -241,12 +242,13 @@ namespace chdk_ptp_test
             this.hexbox.Size = new System.Drawing.Size(620, 271);
             this.hexbox.StringViewVisible = true;
             this.hexbox.TabIndex = 16;
+            this.hexbox.UseFixedBytesPerLine = true;
             this.hexbox.Visible = false;
             // 
             // rebootbutton
             // 
             this.rebootbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rebootbutton.Location = new System.Drawing.Point(476, 39);
+            this.rebootbutton.Location = new System.Drawing.Point(492, 39);
             this.rebootbutton.Name = "rebootbutton";
             this.rebootbutton.Size = new System.Drawing.Size(75, 23);
             this.rebootbutton.TabIndex = 16;
@@ -257,7 +259,7 @@ namespace chdk_ptp_test
             // getmemorybutton
             // 
             this.getmemorybutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.getmemorybutton.Location = new System.Drawing.Point(557, 90);
+            this.getmemorybutton.Location = new System.Drawing.Point(573, 90);
             this.getmemorybutton.Name = "getmemorybutton";
             this.getmemorybutton.Size = new System.Drawing.Size(75, 23);
             this.getmemorybutton.TabIndex = 17;
@@ -265,11 +267,26 @@ namespace chdk_ptp_test
             this.getmemorybutton.UseVisualStyleBackColor = true;
             this.getmemorybutton.Click += new System.EventHandler(this.getmemorybutton_Click);
             // 
+            // hexscrollbar
+            // 
+            this.hexscrollbar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.hexscrollbar.LargeChange = 4096;
+            this.hexscrollbar.Location = new System.Drawing.Point(631, 147);
+            this.hexscrollbar.Maximum = 2147483646;
+            this.hexscrollbar.Name = "hexscrollbar";
+            this.hexscrollbar.Size = new System.Drawing.Size(17, 271);
+            this.hexscrollbar.SmallChange = 16;
+            this.hexscrollbar.TabIndex = 18;
+            this.hexscrollbar.Visible = false;
+            this.hexscrollbar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hexscrollbar_Scroll);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 430);
+            this.ClientSize = new System.Drawing.Size(660, 430);
+            this.Controls.Add(this.hexscrollbar);
             this.Controls.Add(this.getmemorybutton);
             this.Controls.Add(this.rebootbutton);
             this.Controls.Add(this.propertygrid);
@@ -320,6 +337,7 @@ namespace chdk_ptp_test
         private Be.Windows.Forms.HexBox hexbox;
         private System.Windows.Forms.Button rebootbutton;
         private System.Windows.Forms.Button getmemorybutton;
+        private System.Windows.Forms.VScrollBar hexscrollbar;
     }
 }
 

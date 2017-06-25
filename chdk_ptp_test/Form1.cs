@@ -23,6 +23,7 @@ namespace chdk_ptp_test
         private Bitmap live_image = null;
         private Bitmap live_overlay = null;
         private StreamWriter Log;
+        private uint address = 0;
         private int display_width, display_height;
 
         private void refresh_camera_list()
@@ -265,7 +266,7 @@ namespace chdk_ptp_test
                     outputlabel.Text = "(unsupported type)";
                 }
                 propertygrid.Visible = r is IDictionary;
-                hexbox.Visible = false;
+                hexbox.Visible = hexscrollbar.Visible = false;
             }
             catch (Exception ex)
             {
@@ -308,7 +309,6 @@ namespace chdk_ptp_test
             if (!connected)
                 return;
 
-            uint address;
             try
             {
                 if (scriptedit.Text.StartsWith("0x"))
@@ -328,9 +328,25 @@ namespace chdk_ptp_test
 
             outputlabel.Text = $"(0x{address:X})";
             byte[] buffer = session.GetMemory(address, (int)Math.Min(4096u, uint.MaxValue - address + 1));
-            hexbox.LineInfoOffset = address / hexbox.BytesPerLine;
+            hexbox.LineInfoOffset = address;
             hexbox.ByteProvider = new DynamicByteProvider(buffer);
-            hexbox.Visible = true;
+            hexscrollbar.Value = (int)(address / 2);
+            hexbox.Visible = hexscrollbar.Visible = true;
+        }
+
+        private void hexscrollbar_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (!connected)
+                return;
+
+            int delta = e.NewValue - e.OldValue;
+            if (address < -delta)
+                address = 0;
+            else
+                address = (uint)((int)address + delta);
+            byte[] buffer = session.GetMemory(address, (int)Math.Min(4096u, uint.MaxValue - address + 1));
+            hexbox.LineInfoOffset = address;
+            hexbox.ByteProvider = new DynamicByteProvider(buffer);
         }
 
         private void Form1_Load(object sender, EventArgs e)
