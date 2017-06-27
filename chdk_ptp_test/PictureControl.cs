@@ -135,6 +135,7 @@ namespace chdk_ptp_test
             Image image = pictureBox1.Image;
             if (image == null)
             {
+                getimagebutton.PerformClick();
                 overlaybutton.PerformClick();
                 image = pictureBox1.Image;
             }
@@ -152,6 +153,34 @@ namespace chdk_ptp_test
             image.Save(filename, format);
 
             LogLine($"saved {filename}");
+        }
+
+        private void saveasbutton_Click(object sender, EventArgs e)
+        {
+            if (!connected)
+                return;
+
+            Image image = pictureBox1.Image;
+            if (image == null)
+            {
+                getimagebutton.PerformClick();
+                overlaybutton.PerformClick();
+                image = pictureBox1.Image;
+            }
+
+            SaveFileDialog dlg = new SaveFileDialog
+            {
+                Filter = "PNG files|*.png|All files|*.*",
+            };
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                LogLine("saving image...");
+                ImageFormat format = ImageFormat.Png;
+                string filename = dlg.FileName;
+                image.Save(filename, format);
+                LogLine($"saved {filename}");
+            }
         }
     }
 }
