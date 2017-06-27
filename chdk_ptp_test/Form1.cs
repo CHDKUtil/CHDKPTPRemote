@@ -9,6 +9,7 @@ using System.IO;
 using LibUsbDotNet;
 using CHDKPTP;
 using CHDKPTPRemote;
+using chdk_ptp_test.Properties;
 
 namespace chdk_ptp_test
 {
@@ -53,7 +54,8 @@ namespace chdk_ptp_test
         private void UsbDevice_UsbErrorEvent(object sender, UsbError e)
         {
             LogLine("usb error: " + e.ToString());
-            MessageBox.Show("UsbError: " + e.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (Settings.Default.UsbErrorIcon != MessageBoxIcon.None)
+                MessageBox.Show("UsbError: " + e.ToString(), "Error", MessageBoxButtons.OK, Settings.Default.UsbErrorIcon);
         }
 
         public Form1()
