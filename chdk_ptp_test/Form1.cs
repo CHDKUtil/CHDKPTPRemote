@@ -174,8 +174,7 @@ namespace chdk_ptp_test
                 }
 
                 pictureBox1.Image = live_image;
-                pictureBox1.Visible = true;
-                propertygrid.Visible = false;
+                pictureBox1.Refresh();
             }
             catch (Exception ex)
             {
@@ -296,7 +295,6 @@ namespace chdk_ptp_test
                     outputlabel.Text = "(unsupported type)";
                 }
                 propertygrid.Visible = r is IDictionary;
-                pictureBox1.Visible = false;
             }
             catch (Exception ex)
             {
@@ -339,7 +337,7 @@ namespace chdk_ptp_test
                 return;
             }
 
-            
+
             if (pictureBox1.Image == null)
             {
                 Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -351,7 +349,7 @@ namespace chdk_ptp_test
                 }
                 pictureBox1.Image = bmp;
             }
-             
+
 
             using (Graphics g = Graphics.FromImage(pictureBox1.Image))
             {
@@ -361,22 +359,21 @@ namespace chdk_ptp_test
             }
 
             pictureBox1.Refresh();
-            pictureBox1.Visible = true;
-            propertygrid.Visible = false;
         }
+
         /*
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            if (live_image != null)
-            {
-                e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                e.Graphics.DrawImage(live_image, getimagebutton.Left, getimagebutton.Bottom + 10, display_width, display_height);
-            }
-            if (live_overlay != null)
-            {
-                e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                e.Graphics.DrawImage(live_overlay, getimagebutton.Left, getimagebutton.Bottom + 10, display_width, display_height);
-            }
+           if (live_image != null)
+           {
+               e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+               e.Graphics.DrawImage(live_image, getimagebutton.Left, getimagebutton.Bottom + 10, display_width, display_height);
+           }
+           if (live_overlay != null)
+           {
+               e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+               e.Graphics.DrawImage(live_overlay, getimagebutton.Left, getimagebutton.Bottom + 10, display_width, display_height);
+           }
         }
          */
 
