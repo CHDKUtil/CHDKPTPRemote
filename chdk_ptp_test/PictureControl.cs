@@ -168,19 +168,46 @@ namespace chdk_ptp_test
                 image = pictureBox1.Image;
             }
 
+            ImageFormat[] formats =
+            {
+                null,
+                ImageFormat.Bmp,
+                ImageFormat.Emf,
+                ImageFormat.Wmf,
+                ImageFormat.Gif,
+                ImageFormat.Jpeg,
+                ImageFormat.Png,
+                ImageFormat.Tiff,
+                ImageFormat.Exif,
+                ImageFormat.Icon,
+            };
+
             SaveFileDialog dlg = new SaveFileDialog
             {
-                Filter = "PNG files|*.png|All files|*.*",
+                Filter = "BMP files|*.bmp|EMF files|*.emf|WMF files|*.wmf|GIF files|*.gif|JPEG files|*.jpeg|PNG files|*.png|TIFF files|*.tiff|EXIF files|*.exif|ICO files|*.ico|All files|*.*",
+                FilterIndex = GetFilterIndex(formats),
             };
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                LogLine("saving image...");
-                ImageFormat format = ImageFormat.Png;
-                string filename = dlg.FileName;
-                image.Save(filename, format);
-                LogLine($"saved {filename}");
+                if (dlg.FilterIndex > 0 & dlg.FilterIndex < formats.Length)
+                {
+                    ImageFormat format = formats[dlg.FilterIndex];
+                    Settings.Default.SaveImageFormat = format;
+                    LogLine("saving image...");
+                    string filename = dlg.FileName;
+                    image.Save(filename, format);
+                    LogLine($"saved {filename}");
+                }
             }
+        }
+
+        private static int GetFilterIndex(ImageFormat[] formats)
+        {
+            for (int i = 0; i < formats.Length; i++)
+                if (Settings.Default.SaveImageFormat.Equals(formats[i]))
+                    return i;
+            return 0;
         }
     }
 }
