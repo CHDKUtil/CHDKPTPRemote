@@ -56,7 +56,7 @@ namespace chdk_ptp_test
             // 
             // devicecombobox
             // 
-            this.devicecombobox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.devicecombobox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.devicecombobox.FormattingEnabled = true;
             this.devicecombobox.Location = new System.Drawing.Point(12, 12);
@@ -100,7 +100,7 @@ namespace chdk_ptp_test
             // 
             // statuslabel
             // 
-            this.statuslabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.statuslabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.statuslabel.AutoSize = true;
             this.statuslabel.Location = new System.Drawing.Point(12, 44);
@@ -165,7 +165,7 @@ namespace chdk_ptp_test
             // 
             // scriptedit
             // 
-            this.scriptedit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.scriptedit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.scriptedit.Location = new System.Drawing.Point(12, 70);
             this.scriptedit.Name = "scriptedit";
@@ -184,7 +184,7 @@ namespace chdk_ptp_test
             // 
             // outputlabel
             // 
-            this.outputlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.outputlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outputlabel.AutoSize = true;
             this.outputlabel.Location = new System.Drawing.Point(88, 97);
@@ -214,8 +214,8 @@ namespace chdk_ptp_test
             // 
             // propertygrid
             // 
-            this.propertygrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.propertygrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.propertygrid.CommandsVisibleIfAvailable = false;
             this.propertygrid.HelpVisible = false;
@@ -235,15 +235,17 @@ namespace chdk_ptp_test
             this.rebootbutton.Text = "Reboot";
             this.rebootbutton.UseVisualStyleBackColor = true;
             this.rebootbutton.Click += new System.EventHandler(this.rebootbutton_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 166);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 147);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(311, 203);
+            this.pictureBox1.Size = new System.Drawing.Size(360, 240);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
             // Form1
             // 

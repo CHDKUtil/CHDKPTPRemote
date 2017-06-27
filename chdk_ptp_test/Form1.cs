@@ -149,6 +149,8 @@ namespace chdk_ptp_test
             connected_device = null;
             connect_button.Visible = true;
             disconnectbutton.Visible = false;
+            propertygrid.Visible = false;
+            pictureBox1.Visible = false;
             connected = false;
         }
 
@@ -172,6 +174,8 @@ namespace chdk_ptp_test
                 }
 
                 pictureBox1.Image = live_image;
+                pictureBox1.Visible = true;
+                propertygrid.Visible = false;
             }
             catch (Exception ex)
             {
@@ -292,6 +296,7 @@ namespace chdk_ptp_test
                     outputlabel.Text = "(unsupported type)";
                 }
                 propertygrid.Visible = r is IDictionary;
+                pictureBox1.Visible = false;
             }
             catch (Exception ex)
             {
@@ -356,6 +361,8 @@ namespace chdk_ptp_test
             }
 
             pictureBox1.Refresh();
+            pictureBox1.Visible = true;
+            propertygrid.Visible = false;
         }
         /*
         private void Form1_Paint(object sender, PaintEventArgs e)
