@@ -5,5 +5,8 @@
     <Setting Name="UsbErrorIcon" Type="System.Windows.Forms.MessageBoxIcon" Scope="User">
       <Value Profile="(Default)">None</Value>
     </Setting>
+    <Setting Name="SaveImageFormat" Type="System.Drawing.Imaging.ImageFormat" Scope="User">
+      <Value Profile="(Default)">Png</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

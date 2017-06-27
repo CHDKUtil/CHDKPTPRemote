@@ -31,6 +31,7 @@
             this.overlaybutton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.getimagebutton = new System.Windows.Forms.Button();
+            this.savebutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,10 +69,22 @@
             this.getimagebutton.UseVisualStyleBackColor = true;
             this.getimagebutton.Click += new System.EventHandler(this.getimagebutton_Click);
             // 
+            // savebutton
+            // 
+            this.savebutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.savebutton.Location = new System.Drawing.Point(380, 58);
+            this.savebutton.Name = "savebutton";
+            this.savebutton.Size = new System.Drawing.Size(75, 23);
+            this.savebutton.TabIndex = 3;
+            this.savebutton.Text = "Save Image";
+            this.savebutton.UseVisualStyleBackColor = true;
+            this.savebutton.Click += new System.EventHandler(this.savebutton_Click);
+            // 
             // PictureControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.savebutton);
             this.Controls.Add(this.overlaybutton);
             this.Controls.Add(this.getimagebutton);
             this.Controls.Add(this.pictureBox1);
@@ -87,5 +100,6 @@
         private System.Windows.Forms.Button overlaybutton;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button getimagebutton;
+        private System.Windows.Forms.Button savebutton;
     }
 }

@@ -34,5 +34,17 @@ namespace chdk_ptp_test.Properties {
                 this["UsbErrorIcon"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Png")]
+        public global::System.Drawing.Imaging.ImageFormat SaveImageFormat {
+            get {
+                return ((global::System.Drawing.Imaging.ImageFormat)(this["SaveImageFormat"]));
+            }
+            set {
+                this["SaveImageFormat"] = value;
+            }
+        }
     }
 }

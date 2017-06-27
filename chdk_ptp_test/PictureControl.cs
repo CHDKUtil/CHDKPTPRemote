@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using System.IO;
 using CHDKPTPRemote;
 using CHDKPTP;
+using System.Drawing.Imaging;
+using chdk_ptp_test.Properties;
 
 namespace chdk_ptp_test
 {
@@ -123,6 +125,33 @@ namespace chdk_ptp_test
 
             pictureBox1.Refresh();
             pictureBox1.Visible = true;
+        }
+
+        private void savebutton_Click(object sender, EventArgs e)
+        {
+            if (!connected)
+                return;
+
+            Image image = pictureBox1.Image;
+            if (image == null)
+            {
+                overlaybutton.PerformClick();
+                image = pictureBox1.Image;
+            }
+
+            LogLine("saving image...");
+
+            ImageFormat format = Settings.Default.SaveImageFormat;
+            DateTime dateTime = DateTime.Now;
+            string ext;
+            if (format == ImageFormat.Icon)
+                ext = "ico";
+            else
+                ext = format.ToString().ToLower();
+            string filename = $"chdkptp_{dateTime.Year:04}{dateTime.Month:02}{dateTime.Day:02}_{dateTime.Hour:02}{dateTime.Minute:02}{dateTime.Second:02}.{ext}";
+            image.Save(filename, format);
+
+            LogLine($"saved {filename}");
         }
     }
 }
