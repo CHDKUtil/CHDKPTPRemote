@@ -42,17 +42,13 @@ namespace chdk_ptp_test
             this.recordbutton = new System.Windows.Forms.Button();
             this.playbackbutton = new System.Windows.Forms.Button();
             this.shutdownbutton = new System.Windows.Forms.Button();
-            this.execbutton = new System.Windows.Forms.Button();
-            this.scriptedit = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.outputlabel = new System.Windows.Forms.Label();
             this.overlaybutton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.propertygrid = new System.Windows.Forms.PropertyGrid();
             this.rebootbutton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabcontrol = new System.Windows.Forms.TabControl();
             this.scriptpage = new System.Windows.Forms.TabPage();
+            this.scriptcontrol = new chdk_ptp_test.ScriptControl();
             this.picturepage = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabcontrol.SuspendLayout();
@@ -158,46 +154,6 @@ namespace chdk_ptp_test
             this.shutdownbutton.UseVisualStyleBackColor = true;
             this.shutdownbutton.Click += new System.EventHandler(this.shutdownbutton_Click);
             // 
-            // execbutton
-            // 
-            this.execbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.execbutton.Location = new System.Drawing.Point(387, 6);
-            this.execbutton.Name = "execbutton";
-            this.execbutton.Size = new System.Drawing.Size(75, 23);
-            this.execbutton.TabIndex = 18;
-            this.execbutton.Text = "Execute";
-            this.execbutton.UseVisualStyleBackColor = true;
-            this.execbutton.Click += new System.EventHandler(this.execbutton_Click);
-            // 
-            // scriptedit
-            // 
-            this.scriptedit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.scriptedit.Location = new System.Drawing.Point(6, 8);
-            this.scriptedit.Name = "scriptedit";
-            this.scriptedit.Size = new System.Drawing.Size(375, 20);
-            this.scriptedit.TabIndex = 17;
-            this.scriptedit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.scriptedit_KeyPress);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 39);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 13);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Script output:";
-            // 
-            // outputlabel
-            // 
-            this.outputlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputlabel.AutoSize = true;
-            this.outputlabel.Location = new System.Drawing.Point(82, 39);
-            this.outputlabel.Name = "outputlabel";
-            this.outputlabel.Size = new System.Drawing.Size(0, 13);
-            this.outputlabel.TabIndex = 20;
-            // 
             // overlaybutton
             // 
             this.overlaybutton.Location = new System.Drawing.Point(387, 6);
@@ -217,19 +173,6 @@ namespace chdk_ptp_test
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 20;
             this.label2.Text = "Mode:";
-            // 
-            // propertygrid
-            // 
-            this.propertygrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.propertygrid.CommandsVisibleIfAvailable = false;
-            this.propertygrid.HelpVisible = false;
-            this.propertygrid.Location = new System.Drawing.Point(6, 55);
-            this.propertygrid.Name = "propertygrid";
-            this.propertygrid.Size = new System.Drawing.Size(456, 210);
-            this.propertygrid.TabIndex = 16;
-            this.propertygrid.Visible = false;
             // 
             // rebootbutton
             // 
@@ -251,6 +194,7 @@ namespace chdk_ptp_test
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
             // tabcontrol
             // 
@@ -267,17 +211,22 @@ namespace chdk_ptp_test
             // 
             // scriptpage
             // 
-            this.scriptpage.Controls.Add(this.outputlabel);
-            this.scriptpage.Controls.Add(this.label3);
-            this.scriptpage.Controls.Add(this.execbutton);
-            this.scriptpage.Controls.Add(this.scriptedit);
-            this.scriptpage.Controls.Add(this.propertygrid);
+            this.scriptpage.Controls.Add(this.scriptcontrol);
             this.scriptpage.Location = new System.Drawing.Point(4, 22);
             this.scriptpage.Name = "scriptpage";
             this.scriptpage.Padding = new System.Windows.Forms.Padding(3);
             this.scriptpage.Size = new System.Drawing.Size(468, 271);
             this.scriptpage.TabIndex = 0;
             this.scriptpage.Text = "Script";
+            // 
+            // scriptcontrol
+            // 
+            this.scriptcontrol.Connected = false;
+            this.scriptcontrol.Location = new System.Drawing.Point(7, 7);
+            this.scriptcontrol.Name = "scriptcontrol";
+            this.scriptcontrol.Session = null;
+            this.scriptcontrol.Size = new System.Drawing.Size(455, 258);
+            this.scriptcontrol.TabIndex = 0;
             // 
             // picturepage
             // 
@@ -314,7 +263,6 @@ namespace chdk_ptp_test
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabcontrol.ResumeLayout(false);
             this.scriptpage.ResumeLayout(false);
-            this.scriptpage.PerformLayout();
             this.picturepage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -333,17 +281,13 @@ namespace chdk_ptp_test
         private System.Windows.Forms.Button shutdownbutton;
         private System.Windows.Forms.Button rebootbutton;
         private System.Windows.Forms.TabControl tabcontrol;
-        private System.Windows.Forms.TabPage scriptpage;
-        private System.Windows.Forms.Label outputlabel;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button execbutton;
-        private System.Windows.Forms.TextBox scriptedit;
-        private System.Windows.Forms.PropertyGrid propertygrid;
         private System.Windows.Forms.TabPage picturepage;
         private System.Windows.Forms.Button overlaybutton;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button getimagebutton;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabPage scriptpage;
+        private ScriptControl scriptcontrol;
     }
 }
 

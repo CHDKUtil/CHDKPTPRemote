@@ -69,7 +69,7 @@ namespace chdk_ptp_test
         public Form1()
         {
             InitializeComponent();
-            Log = File.AppendText("chdk_ptp_test.log");
+            Log = scriptcontrol.Log = File.AppendText("chdk_ptp_test.log");
             LogLine("=== program started ===");
             UsbDevice.UsbErrorEvent += new EventHandler<UsbError>(UsbDevice_UsbErrorEvent);
         }
@@ -105,7 +105,7 @@ namespace chdk_ptp_test
             LogLine("opening device: " + connected_device.Name);
             try
             {
-                session = new Session(connected_device);
+                session = scriptcontrol.Session = new Session(connected_device);
                 session.Connect();
             }
             catch (Exception ex)
@@ -118,7 +118,7 @@ namespace chdk_ptp_test
                 return;
             }
             LogLine("connected.");
-            connected = true;
+            connected = scriptcontrol.Connected = true;
             connect_button.Visible = false;
             disconnectbutton.Visible = true;
             statuslabel.Text = "Connected to: " + connected_device.ToString();
@@ -149,9 +149,8 @@ namespace chdk_ptp_test
             connected_device = null;
             connect_button.Visible = true;
             disconnectbutton.Visible = false;
-            propertygrid.Visible = false;
             pictureBox1.Visible = false;
-            connected = false;
+            connected = scriptcontrol.Connected = false;
         }
 
         private void getimagebutton_Click(object sender, EventArgs e)
@@ -175,6 +174,7 @@ namespace chdk_ptp_test
 
                 pictureBox1.Image = live_image;
                 pictureBox1.Refresh();
+                pictureBox1.Visible = true;
             }
             catch (Exception ex)
             {
@@ -259,59 +259,6 @@ namespace chdk_ptp_test
             LogLine("reboot complete.");
         }
 
-        private void execbutton_Click(object sender, EventArgs e)
-        {
-            if (!connected)
-                return;
-
-            LogLine("executing script: " + scriptedit.Text);
-            try
-            {
-                object r = session.ExecuteScript(scriptedit.Text);
-                if (r == null)
-                {
-                    outputlabel.Text = "(none)";
-                }
-                else if (r.GetType() == typeof(bool))
-                {
-                    outputlabel.Text = r.ToString();
-                }
-                else if (r.GetType() == typeof(int))
-                {
-                    outputlabel.Text = r.ToString();
-                }
-                else if (r.GetType() == typeof(string))
-                {
-                    outputlabel.Text = (string)r;
-                }
-                else if (r is IDictionary)
-                {
-                    outputlabel.Text = "(table)";
-                    propertygrid.PropertySort = PropertySort.NoSort;
-                    propertygrid.SelectedObject = new PropertyGridDictionaryAdapter((IDictionary)r);
-                }
-                else
-                {
-                    outputlabel.Text = "(unsupported type)";
-                }
-                propertygrid.Visible = r is IDictionary;
-            }
-            catch (Exception ex)
-            {
-                LogLine("exception: " + ex.Message + Environment.NewLine + ex.StackTrace.ToString());
-                outputlabel.Text = ex.Message;
-            }
-            LogLine("done.");
-        }
-
-        private void scriptedit_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == '\n')
-            {
-                execbutton.PerformClick();
-            }
-        }
-
         private void overlaybutton_Click(object sender, EventArgs e)
         {
             if (!connected)
@@ -359,6 +306,7 @@ namespace chdk_ptp_test
             }
 
             pictureBox1.Refresh();
+            pictureBox1.Visible = true;
         }
 
         /*
