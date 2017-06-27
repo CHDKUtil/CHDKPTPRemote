@@ -4,18 +4,11 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using LibUsbDotNet;
 using CHDKPTP;
 using CHDKPTPRemote;
-using System.Collections;
 
 namespace chdk_ptp_test
 {
@@ -24,10 +17,7 @@ namespace chdk_ptp_test
         private bool connected = false;
         private CHDKPTPDevice connected_device = null;
         private Session session = null;
-        private Bitmap live_image = null;
-        private Bitmap live_overlay = null;
         private StreamWriter Log;
-        private int display_width, display_height;
 
         private void refresh_camera_list()
         {
@@ -69,7 +59,7 @@ namespace chdk_ptp_test
         public Form1()
         {
             InitializeComponent();
-            Log = scriptcontrol.Log = File.AppendText("chdk_ptp_test.log");
+            Log = scriptcontrol.Log = picturecontrol.Log = File.AppendText("chdk_ptp_test.log");
             LogLine("=== program started ===");
             UsbDevice.UsbErrorEvent += new EventHandler<UsbError>(UsbDevice_UsbErrorEvent);
         }
@@ -105,7 +95,7 @@ namespace chdk_ptp_test
             LogLine("opening device: " + connected_device.Name);
             try
             {
-                session = scriptcontrol.Session = new Session(connected_device);
+                session = scriptcontrol.Session = picturecontrol.Session = new Session(connected_device);
                 session.Connect();
             }
             catch (Exception ex)
@@ -118,7 +108,7 @@ namespace chdk_ptp_test
                 return;
             }
             LogLine("connected.");
-            connected = scriptcontrol.Connected = true;
+            connected = scriptcontrol.Connected = picturecontrol.Connected = true;
             connect_button.Visible = false;
             disconnectbutton.Visible = true;
             statuslabel.Text = "Connected to: " + connected_device.ToString();
@@ -149,39 +139,7 @@ namespace chdk_ptp_test
             connected_device = null;
             connect_button.Visible = true;
             disconnectbutton.Visible = false;
-            pictureBox1.Visible = false;
-            connected = scriptcontrol.Connected = false;
-        }
-
-        private void getimagebutton_Click(object sender, EventArgs e)
-        {
-            if (!connected)
-                return;
-
-            LogLine("getting live image...");
-            try
-            {
-                session.GetLiveData((int)LIVE_XFER_TYPE.VIEWPORT);
-
-                if (live_image == null)
-                {
-                    live_image = session.GetLiveImage();
-                }
-                else
-                {
-                    session.GetLiveImage(live_image);
-                }
-
-                pictureBox1.Image = live_image;
-                pictureBox1.Refresh();
-                pictureBox1.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                LogLine("exception: " + ex.Message + Environment.NewLine + ex.StackTrace.ToString());
-                MessageBox.Show("could not get live image: " + ex.Message + "\n\n" + ex.StackTrace.ToString());
-                return;
-            }
+            connected = scriptcontrol.Connected = picturecontrol.Connected = false;
         }
 
         private void recordbutton_Click(object sender, EventArgs e)
@@ -257,56 +215,6 @@ namespace chdk_ptp_test
             post_disconnect();
             refresh_camera_list();
             LogLine("reboot complete.");
-        }
-
-        private void overlaybutton_Click(object sender, EventArgs e)
-        {
-            if (!connected)
-                return;
-
-            LogLine("getting live overlay...");
-            try
-            {
-                session.GetLiveData((int)LIVE_XFER_TYPE.BITMAP + (int)LIVE_XFER_TYPE.PALETTE);
-                if (live_overlay == null)
-                {
-                    live_overlay = session.GetLiveOverlay();
-                }
-                else
-                {
-                    session.GetLiveOverlay(live_overlay);
-                }
-            }
-            catch (Exception ex)
-            {
-                LogLine("exception: " + ex.Message + Environment.NewLine + ex.StackTrace.ToString());
-                MessageBox.Show("could not get live overlay: " + ex.Message + "\n\n" + ex.StackTrace.ToString());
-                return;
-            }
-
-
-            if (pictureBox1.Image == null)
-            {
-                Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                using (Graphics g = Graphics.FromImage(bmp))
-                {
-                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    g.DrawImage(live_overlay, 0, 0, pictureBox1.Width, pictureBox1.Height);
-
-                }
-                pictureBox1.Image = bmp;
-            }
-
-
-            using (Graphics g = Graphics.FromImage(pictureBox1.Image))
-            {
-                //g.DrawLine(Pens.Black, _Previous.Value, e.Location);
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                g.DrawImage(live_overlay, 0, 0, pictureBox1.Image.Width, pictureBox1.Image.Height);
-            }
-
-            pictureBox1.Refresh();
-            pictureBox1.Visible = true;
         }
 
         /*

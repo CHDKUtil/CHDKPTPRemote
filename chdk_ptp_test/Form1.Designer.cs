@@ -38,19 +38,16 @@ namespace chdk_ptp_test
             this.refreshbutton = new System.Windows.Forms.Button();
             this.disconnectbutton = new System.Windows.Forms.Button();
             this.statuslabel = new System.Windows.Forms.Label();
-            this.getimagebutton = new System.Windows.Forms.Button();
             this.recordbutton = new System.Windows.Forms.Button();
             this.playbackbutton = new System.Windows.Forms.Button();
             this.shutdownbutton = new System.Windows.Forms.Button();
-            this.overlaybutton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.rebootbutton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabcontrol = new System.Windows.Forms.TabControl();
             this.scriptpage = new System.Windows.Forms.TabPage();
             this.scriptcontrol = new chdk_ptp_test.ScriptControl();
             this.picturepage = new System.Windows.Forms.TabPage();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.picturecontrol = new chdk_ptp_test.PictureControl();
             this.tabcontrol.SuspendLayout();
             this.scriptpage.SuspendLayout();
             this.picturepage.SuspendLayout();
@@ -111,16 +108,6 @@ namespace chdk_ptp_test
             this.statuslabel.TabIndex = 4;
             this.statuslabel.Text = "Not connected";
             // 
-            // getimagebutton
-            // 
-            this.getimagebutton.Location = new System.Drawing.Point(306, 6);
-            this.getimagebutton.Name = "getimagebutton";
-            this.getimagebutton.Size = new System.Drawing.Size(75, 23);
-            this.getimagebutton.TabIndex = 6;
-            this.getimagebutton.Text = "Get Image";
-            this.getimagebutton.UseVisualStyleBackColor = true;
-            this.getimagebutton.Click += new System.EventHandler(this.getimagebutton_Click);
-            // 
             // recordbutton
             // 
             this.recordbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -154,19 +141,8 @@ namespace chdk_ptp_test
             this.shutdownbutton.UseVisualStyleBackColor = true;
             this.shutdownbutton.Click += new System.EventHandler(this.shutdownbutton_Click);
             // 
-            // overlaybutton
-            // 
-            this.overlaybutton.Location = new System.Drawing.Point(387, 6);
-            this.overlaybutton.Name = "overlaybutton";
-            this.overlaybutton.Size = new System.Drawing.Size(75, 23);
-            this.overlaybutton.TabIndex = 19;
-            this.overlaybutton.Text = "Get Overlay";
-            this.overlaybutton.UseVisualStyleBackColor = true;
-            this.overlaybutton.Click += new System.EventHandler(this.overlaybutton_Click);
-            // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 73);
             this.label2.Name = "label2";
@@ -185,17 +161,6 @@ namespace chdk_ptp_test
             this.rebootbutton.UseVisualStyleBackColor = true;
             this.rebootbutton.Click += new System.EventHandler(this.rebootbutton_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Location = new System.Drawing.Point(6, 31);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(360, 240);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
-            // 
             // tabcontrol
             // 
             this.tabcontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -206,7 +171,7 @@ namespace chdk_ptp_test
             this.tabcontrol.Location = new System.Drawing.Point(12, 97);
             this.tabcontrol.Name = "tabcontrol";
             this.tabcontrol.SelectedIndex = 0;
-            this.tabcontrol.Size = new System.Drawing.Size(476, 297);
+            this.tabcontrol.Size = new System.Drawing.Size(476, 313);
             this.tabcontrol.TabIndex = 18;
             // 
             // scriptpage
@@ -215,36 +180,51 @@ namespace chdk_ptp_test
             this.scriptpage.Location = new System.Drawing.Point(4, 22);
             this.scriptpage.Name = "scriptpage";
             this.scriptpage.Padding = new System.Windows.Forms.Padding(3);
-            this.scriptpage.Size = new System.Drawing.Size(468, 271);
+            this.scriptpage.Size = new System.Drawing.Size(468, 287);
             this.scriptpage.TabIndex = 0;
             this.scriptpage.Text = "Script";
             // 
             // scriptcontrol
             // 
+            this.scriptcontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.scriptcontrol.Connected = false;
             this.scriptcontrol.Location = new System.Drawing.Point(7, 7);
+            this.scriptcontrol.Log = null;
             this.scriptcontrol.Name = "scriptcontrol";
             this.scriptcontrol.Session = null;
-            this.scriptcontrol.Size = new System.Drawing.Size(455, 258);
+            this.scriptcontrol.Size = new System.Drawing.Size(455, 274);
             this.scriptcontrol.TabIndex = 0;
             // 
             // picturepage
             // 
-            this.picturepage.Controls.Add(this.overlaybutton);
-            this.picturepage.Controls.Add(this.pictureBox1);
-            this.picturepage.Controls.Add(this.getimagebutton);
+            this.picturepage.Controls.Add(this.picturecontrol);
             this.picturepage.Location = new System.Drawing.Point(4, 22);
             this.picturepage.Name = "picturepage";
             this.picturepage.Padding = new System.Windows.Forms.Padding(3);
-            this.picturepage.Size = new System.Drawing.Size(468, 271);
+            this.picturepage.Size = new System.Drawing.Size(468, 287);
             this.picturepage.TabIndex = 1;
             this.picturepage.Text = "Live";
+            // 
+            // picturecontrol
+            // 
+            this.picturecontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picturecontrol.Connected = false;
+            this.picturecontrol.Location = new System.Drawing.Point(6, 6);
+            this.picturecontrol.Log = null;
+            this.picturecontrol.Name = "picturecontrol";
+            this.picturecontrol.Session = null;
+            this.picturecontrol.Size = new System.Drawing.Size(456, 275);
+            this.picturecontrol.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 406);
+            this.ClientSize = new System.Drawing.Size(500, 422);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tabcontrol);
             this.Controls.Add(this.rebootbutton);
@@ -260,7 +240,6 @@ namespace chdk_ptp_test
             this.Name = "Form1";
             this.Text = "CHDK PTP Test";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabcontrol.ResumeLayout(false);
             this.scriptpage.ResumeLayout(false);
             this.picturepage.ResumeLayout(false);
@@ -282,12 +261,10 @@ namespace chdk_ptp_test
         private System.Windows.Forms.Button rebootbutton;
         private System.Windows.Forms.TabControl tabcontrol;
         private System.Windows.Forms.TabPage picturepage;
-        private System.Windows.Forms.Button overlaybutton;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button getimagebutton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage scriptpage;
         private ScriptControl scriptcontrol;
+        private PictureControl picturecontrol;
     }
 }
 
