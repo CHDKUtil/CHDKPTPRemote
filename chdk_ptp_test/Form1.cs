@@ -156,6 +156,29 @@ namespace chdk_ptp_test
         {
             if (!connected)
                 return;
+
+            LogLine("getting live image...");
+            try
+            {
+                session.GetLiveData((int)LIVE_XFER_TYPE.VIEWPORT);
+
+                if (live_image == null)
+                {
+                    live_image = session.GetLiveImage();
+                }
+                else
+                {
+                    session.GetLiveImage(live_image);
+                }
+
+                pictureBox1.Image = live_image;
+            }
+            catch (Exception ex)
+            {
+                LogLine("exception: " + ex.Message + Environment.NewLine + ex.StackTrace.ToString());
+                MessageBox.Show("could not get live image: " + ex.Message + "\n\n" + ex.StackTrace.ToString());
+                return;
+            }
         }
 
         private void recordbutton_Click(object sender, EventArgs e)
@@ -290,8 +313,51 @@ namespace chdk_ptp_test
         {
             if (!connected)
                 return;
-        }
 
+            LogLine("getting live overlay...");
+            try
+            {
+                session.GetLiveData((int)LIVE_XFER_TYPE.BITMAP + (int)LIVE_XFER_TYPE.PALETTE);
+                if (live_overlay == null)
+                {
+                    live_overlay = session.GetLiveOverlay();
+                }
+                else
+                {
+                    session.GetLiveOverlay(live_overlay);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogLine("exception: " + ex.Message + Environment.NewLine + ex.StackTrace.ToString());
+                MessageBox.Show("could not get live overlay: " + ex.Message + "\n\n" + ex.StackTrace.ToString());
+                return;
+            }
+
+            
+            if (pictureBox1.Image == null)
+            {
+                Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(live_overlay, 0, 0, pictureBox1.Width, pictureBox1.Height);
+
+                }
+                pictureBox1.Image = bmp;
+            }
+             
+
+            using (Graphics g = Graphics.FromImage(pictureBox1.Image))
+            {
+                //g.DrawLine(Pens.Black, _Previous.Value, e.Location);
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(live_overlay, 0, 0, pictureBox1.Image.Width, pictureBox1.Image.Height);
+            }
+
+            pictureBox1.Refresh();
+        }
+        /*
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             if (live_image != null)
@@ -305,6 +371,7 @@ namespace chdk_ptp_test
                 e.Graphics.DrawImage(live_overlay, getimagebutton.Left, getimagebutton.Bottom + 10, display_width, display_height);
             }
         }
+         */
 
         private void Form1_Load(object sender, EventArgs e)
         {

@@ -109,5 +109,11 @@ namespace CHDKPTP
             subtype = ptp.Param2;
             script_id = ptp.Param3;
         }
+
+        // get live view data from camera
+        public void CHDK_GetLiveViewData(out byte[] live_view_data, int live_xfer_type)
+        {
+            SendCHDKCommand(CHDK_PTP_Command.PTP_CHDK_GetDisplayData, out live_view_data, 1, live_xfer_type);
+        }
     }
 }

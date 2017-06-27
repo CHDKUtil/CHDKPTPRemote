@@ -50,11 +50,13 @@ namespace chdk_ptp_test
             this.label2 = new System.Windows.Forms.Label();
             this.propertygrid = new System.Windows.Forms.PropertyGrid();
             this.rebootbutton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // devicecombobox
             // 
-            this.devicecombobox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.devicecombobox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.devicecombobox.FormattingEnabled = true;
             this.devicecombobox.Location = new System.Drawing.Point(12, 12);
@@ -98,7 +100,7 @@ namespace chdk_ptp_test
             // 
             // statuslabel
             // 
-            this.statuslabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.statuslabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.statuslabel.AutoSize = true;
             this.statuslabel.Location = new System.Drawing.Point(12, 44);
@@ -109,7 +111,6 @@ namespace chdk_ptp_test
             // 
             // getimagebutton
             // 
-            this.getimagebutton.Enabled = false;
             this.getimagebutton.Location = new System.Drawing.Point(12, 118);
             this.getimagebutton.Name = "getimagebutton";
             this.getimagebutton.Size = new System.Drawing.Size(75, 23);
@@ -164,7 +165,7 @@ namespace chdk_ptp_test
             // 
             // scriptedit
             // 
-            this.scriptedit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.scriptedit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.scriptedit.Location = new System.Drawing.Point(12, 70);
             this.scriptedit.Name = "scriptedit";
@@ -183,7 +184,7 @@ namespace chdk_ptp_test
             // 
             // outputlabel
             // 
-            this.outputlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.outputlabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outputlabel.AutoSize = true;
             this.outputlabel.Location = new System.Drawing.Point(88, 97);
@@ -193,7 +194,6 @@ namespace chdk_ptp_test
             // 
             // overlaybutton
             // 
-            this.overlaybutton.Enabled = false;
             this.overlaybutton.Location = new System.Drawing.Point(93, 118);
             this.overlaybutton.Name = "overlaybutton";
             this.overlaybutton.Size = new System.Drawing.Size(75, 23);
@@ -214,8 +214,8 @@ namespace chdk_ptp_test
             // 
             // propertygrid
             // 
-            this.propertygrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.propertygrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.propertygrid.CommandsVisibleIfAvailable = false;
             this.propertygrid.HelpVisible = false;
@@ -235,6 +235,15 @@ namespace chdk_ptp_test
             this.rebootbutton.Text = "Reboot";
             this.rebootbutton.UseVisualStyleBackColor = true;
             this.rebootbutton.Click += new System.EventHandler(this.rebootbutton_Click);
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.Location = new System.Drawing.Point(15, 166);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(311, 203);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
@@ -243,6 +252,7 @@ namespace chdk_ptp_test
             this.ClientSize = new System.Drawing.Size(500, 406);
             this.Controls.Add(this.rebootbutton);
             this.Controls.Add(this.propertygrid);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.overlaybutton);
             this.Controls.Add(this.outputlabel);
             this.Controls.Add(this.label3);
@@ -262,7 +272,7 @@ namespace chdk_ptp_test
             this.Name = "Form1";
             this.Text = "CHDK PTP Test";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,6 +297,7 @@ namespace chdk_ptp_test
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PropertyGrid propertygrid;
         private System.Windows.Forms.Button rebootbutton;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

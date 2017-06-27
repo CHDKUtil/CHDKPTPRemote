@@ -18,7 +18,8 @@ namespace CHDKPTP
         PTP_CHDK_ScriptStatus,
         PTP_CHDK_ScriptSupport,
         PTP_CHDK_ReadScriptMsg,
-        PTP_CHDK_WriteScriptMsg
+        PTP_CHDK_WriteScriptMsg,
+        PTP_CHDK_GetDisplayData // Live view protocol
     }
 
     public enum CHDK_ScriptLanguage
@@ -61,5 +62,13 @@ namespace CHDKPTP
     public enum CHDK_ScriptSupport
     {
         PTP_CHDK_SCRIPT_SUPPORT_LUA = 0x1
+    }
+
+    // live view type
+    public enum LIVE_XFER_TYPE
+    {
+        VIEWPORT = 1,
+        BITMAP = 4,
+        PALETTE = 8
     }
 }
