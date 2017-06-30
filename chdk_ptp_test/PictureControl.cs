@@ -135,7 +135,6 @@ namespace chdk_ptp_test
             Image image = pictureBox1.Image;
             if (image == null)
             {
-                getimagebutton.PerformClick();
                 overlaybutton.PerformClick();
                 image = pictureBox1.Image;
             }
@@ -163,7 +162,6 @@ namespace chdk_ptp_test
             Image image = pictureBox1.Image;
             if (image == null)
             {
-                getimagebutton.PerformClick();
                 overlaybutton.PerformClick();
                 image = pictureBox1.Image;
             }
