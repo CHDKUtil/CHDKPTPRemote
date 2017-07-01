@@ -139,7 +139,7 @@ namespace chdk_ptp_test
                 ext = "ico";
             else
                 ext = format.ToString().ToLower();
-            string filename = $"chdkptp_{dateTime.Year:04}{dateTime.Month:02}{dateTime.Day:02}_{dateTime.Hour:02}{dateTime.Minute:02}{dateTime.Second:02}.{ext}";
+            string filename = $"chdkptp_{dateTime:yyyyMMdd}_{dateTime:HHmmss}.{ext}";
             saveImage.Save(filename, format);
 
             LogLine($"saved {filename}");
