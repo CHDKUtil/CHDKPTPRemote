@@ -1,22 +1,95 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using CHDKPTPRemote;
 using CHDKPTP;
-using System.Drawing.Imaging;
 using chdk_ptp_test.Properties;
 
 namespace chdk_ptp_test
 {
-    public partial class PictureControl : UserControl
+    public partial class PictureControl : UserControl, IDisposable
     {
         private Bitmap live_image = null;
         private Bitmap live_overlay = null;
+        private BackgroundWorker worker;
 
         public PictureControl()
         {
             InitializeComponent();
+            VisibleChanged += PictureControl_VisibleChanged;
+            worker = new BackgroundWorker();
+        }
+
+        void IDisposable.Dispose()
+        {
+            worker.Dispose();
+        }
+
+        private void PictureControl_VisibleChanged(object sender, EventArgs e)
+        {
+            if (Visible)
+            {
+                worker.DoWork += Worker_DoWork;
+                worker.RunWorkerAsync();
+                worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            }
+            else
+                worker.DoWork -= Worker_DoWork;
+        }
+
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Thread.Yield();
+
+            if (!connected)
+                return;
+
+            session.GetLiveData((int)LIVE_XFER_TYPE.VIEWPORT);
+
+            if (live_image == null)
+                live_image = session.GetLiveImage();
+            else
+                session.GetLiveImage(live_image);
+
+            var image = live_image;
+
+            Thread.Yield();
+
+            if (!connected)
+                return;
+
+            session.GetLiveData((int)LIVE_XFER_TYPE.BITMAP | (int)LIVE_XFER_TYPE.PALETTE);
+
+            if (live_overlay == null)
+                live_overlay = session.GetLiveOverlay();
+            else
+                session.GetLiveOverlay(live_overlay);
+
+            Thread.Yield();
+
+            using (Graphics g = Graphics.FromImage(image))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(live_overlay, 0, 0, image.Width, image.Height);
+            }
+
+            pictureBox1.Image = live_image;
+            pictureBox1.BeginInvoke((Action)RefreshPicture);
+        }
+
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            worker.RunWorkerAsync();
+        }
+
+        private void RefreshPicture()
+        {
+            pictureBox1.Visible = true;
+            pictureBox1.Refresh();
         }
 
         private void LogLine(string s)
@@ -42,7 +115,10 @@ namespace chdk_ptp_test
             {
                 connected = value;
                 if (!connected)
+                {
+                    worker.DoWork -= Worker_DoWork;
                     pictureBox1.Visible = false;
+                }
             }
         }
 
@@ -133,11 +209,6 @@ namespace chdk_ptp_test
                 return;
 
             Image image = pictureBox1.Image;
-            if (image == null)
-            {
-                overlaybutton.PerformClick();
-                image = pictureBox1.Image;
-            }
 
             LogLine("saving image...");
 
@@ -160,11 +231,6 @@ namespace chdk_ptp_test
                 return;
 
             Image image = pictureBox1.Image;
-            if (image == null)
-            {
-                overlaybutton.PerformClick();
-                image = pictureBox1.Image;
-            }
 
             ImageFormat[] formats =
             {

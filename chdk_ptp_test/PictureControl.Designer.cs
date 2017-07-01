@@ -28,24 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.overlaybutton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.getimagebutton = new System.Windows.Forms.Button();
             this.savebutton = new System.Windows.Forms.Button();
             this.saveasbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // overlaybutton
-            // 
-            this.overlaybutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.overlaybutton.Location = new System.Drawing.Point(380, 29);
-            this.overlaybutton.Name = "overlaybutton";
-            this.overlaybutton.Size = new System.Drawing.Size(75, 23);
-            this.overlaybutton.TabIndex = 2;
-            this.overlaybutton.Text = "Get Overlay";
-            this.overlaybutton.UseVisualStyleBackColor = true;
-            this.overlaybutton.Click += new System.EventHandler(this.overlaybutton_Click);
             // 
             // pictureBox1
             // 
@@ -59,21 +46,10 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
             // 
-            // getimagebutton
-            // 
-            this.getimagebutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.getimagebutton.Location = new System.Drawing.Point(380, 0);
-            this.getimagebutton.Name = "getimagebutton";
-            this.getimagebutton.Size = new System.Drawing.Size(75, 23);
-            this.getimagebutton.TabIndex = 1;
-            this.getimagebutton.Text = "Get Image";
-            this.getimagebutton.UseVisualStyleBackColor = true;
-            this.getimagebutton.Click += new System.EventHandler(this.getimagebutton_Click);
-            // 
             // savebutton
             // 
             this.savebutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.savebutton.Location = new System.Drawing.Point(380, 58);
+            this.savebutton.Location = new System.Drawing.Point(380, 0);
             this.savebutton.Name = "savebutton";
             this.savebutton.Size = new System.Drawing.Size(75, 23);
             this.savebutton.TabIndex = 3;
@@ -84,7 +60,7 @@
             // saveasbutton
             // 
             this.saveasbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveasbutton.Location = new System.Drawing.Point(380, 87);
+            this.saveasbutton.Location = new System.Drawing.Point(380, 29);
             this.saveasbutton.Name = "saveasbutton";
             this.saveasbutton.Size = new System.Drawing.Size(75, 23);
             this.saveasbutton.TabIndex = 4;
@@ -98,8 +74,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.saveasbutton);
             this.Controls.Add(this.savebutton);
-            this.Controls.Add(this.overlaybutton);
-            this.Controls.Add(this.getimagebutton);
             this.Controls.Add(this.pictureBox1);
             this.Name = "PictureControl";
             this.Size = new System.Drawing.Size(455, 266);
@@ -109,10 +83,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button overlaybutton;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button getimagebutton;
         private System.Windows.Forms.Button savebutton;
         private System.Windows.Forms.Button saveasbutton;
     }
