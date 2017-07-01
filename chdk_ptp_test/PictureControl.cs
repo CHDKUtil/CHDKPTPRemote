@@ -11,7 +11,7 @@ using chdk_ptp_test.Properties;
 
 namespace chdk_ptp_test
 {
-    public partial class PictureControl : UserControl, IDisposable
+    public partial class PictureControl : UserControl
     {
         private Bitmap live_image = null;
         private Bitmap live_overlay = null;
@@ -23,11 +23,9 @@ namespace chdk_ptp_test
             InitializeComponent();
             VisibleChanged += PictureControl_VisibleChanged;
             worker = new BackgroundWorker();
-        }
-
-        void IDisposable.Dispose()
-        {
-            worker.Dispose();
+            if (components == null)
+                components = new Container();
+            components.Add(worker);
         }
 
         private void PictureControl_VisibleChanged(object sender, EventArgs e)

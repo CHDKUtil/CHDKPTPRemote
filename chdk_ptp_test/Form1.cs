@@ -4,6 +4,7 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using System.IO;
 using LibUsbDotNet;
@@ -61,12 +62,17 @@ namespace chdk_ptp_test
         public Form1()
         {
             InitializeComponent();
+            Component usbComponent = new Component();
+            usbComponent.Disposed += UsbComponent_Disposed;
+            if (components == null)
+                components = new Container();
+            components.Add(usbComponent);
             Log = scriptcontrol.Log = picturecontrol.Log = File.AppendText("chdk_ptp_test.log");
             LogLine("=== program started ===");
             UsbDevice.UsbErrorEvent += new EventHandler<UsbError>(UsbDevice_UsbErrorEvent);
         }
 
-        ~Form1()
+        private void UsbComponent_Disposed(object sender, EventArgs e)
         {
             LogLine("closing...");
             UsbDevice.Exit();
