@@ -73,6 +73,17 @@ namespace chdk_ptp_test
             LogLine("=== program ended ===");
         }
 
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            if (session != null)
+            {
+                session.Disconnect();
+                connected_device = null;
+                connected = scriptcontrol.Connected = picturecontrol.Connected = false;
+            }
+        }
+
         private void refreshbutton_Click(object sender, EventArgs e)
         {
             refresh_camera_list();
