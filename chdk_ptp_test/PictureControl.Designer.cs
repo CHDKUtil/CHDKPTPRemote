@@ -31,6 +31,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.savebutton = new System.Windows.Forms.Button();
             this.saveasbutton = new System.Windows.Forms.Button();
+            this.saveaddbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,10 +69,22 @@
             this.saveasbutton.UseVisualStyleBackColor = true;
             this.saveasbutton.Click += new System.EventHandler(this.saveasbutton_Click);
             // 
+            // saveaddbutton
+            // 
+            this.saveaddbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveaddbutton.Location = new System.Drawing.Point(380, 58);
+            this.saveaddbutton.Name = "saveaddbutton";
+            this.saveaddbutton.Size = new System.Drawing.Size(75, 23);
+            this.saveaddbutton.TabIndex = 5;
+            this.saveaddbutton.Text = "Save Add";
+            this.saveaddbutton.UseVisualStyleBackColor = true;
+            this.saveaddbutton.Click += new System.EventHandler(this.saveaddbutton_Click);
+            // 
             // PictureControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.saveaddbutton);
             this.Controls.Add(this.saveasbutton);
             this.Controls.Add(this.savebutton);
             this.Controls.Add(this.pictureBox1);
@@ -86,5 +99,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button savebutton;
         private System.Windows.Forms.Button saveasbutton;
+        private System.Windows.Forms.Button saveaddbutton;
     }
 }
