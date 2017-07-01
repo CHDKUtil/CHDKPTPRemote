@@ -56,8 +56,6 @@ namespace chdk_ptp_test
             else
                 session.GetLiveImage(live_image);
 
-            var image = live_image;
-
             Thread.Yield();
 
             if (!connected)
@@ -72,7 +70,7 @@ namespace chdk_ptp_test
 
             Thread.Yield();
 
-            pictureBox1.BeginInvoke((Action<Image>)RefreshPicture, image);
+            pictureBox1.BeginInvoke((Action<Image>)RefreshPicture, live_image);
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -178,8 +176,8 @@ namespace chdk_ptp_test
                 {
                     ImageFormat format = formats[dlg.FilterIndex];
                     Settings.Default.SaveImageFormat = format;
-                    var encoder = GetEncoderInfo(format);
-                    var encoderParams = GetSaveEncoderParams(format);
+                    ImageCodecInfo encoder = GetEncoderInfo(format);
+                    EncoderParameters encoderParams = GetSaveEncoderParams(format);
                     LogLine("saving image...");
                     string filename = dlg.FileName;
                     saveImage.Save(filename, encoder, encoderParams);
@@ -197,7 +195,7 @@ namespace chdk_ptp_test
                 return;
 
             ImageFormat format = Settings.Default.SaveImageFormat;
-            var encoderParams = GetSaveAddEncoderParams(format);
+            EncoderParameters encoderParams = GetSaveAddEncoderParams(format);
             if (encoderParams == null)
                 return;
 
@@ -218,8 +216,7 @@ namespace chdk_ptp_test
         private static ImageCodecInfo GetEncoderInfo(ImageFormat format)
         {
             int j;
-            ImageCodecInfo[] encoders;
-            encoders = ImageCodecInfo.GetImageEncoders();
+            ImageCodecInfo[] encoders = ImageCodecInfo.GetImageEncoders();
             for (j = 0; j < encoders.Length; ++j)
             {
                 if (encoders[j].FormatID == format.Guid)
