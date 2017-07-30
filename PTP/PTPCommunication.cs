@@ -69,8 +69,8 @@ namespace PTP
             reqres.data = new byte[484];
             ptpdata = new PTPData();
             ptpdata.data = new byte[500];
-            p_reqres = Marshal.AllocHGlobal(Marshal.SizeOf(reqres));
-            p_ptpdata = Marshal.AllocHGlobal(Marshal.SizeOf(ptpdata));
+            p_reqres = Marshal.AllocHGlobal(Marshal.SizeOf<PTPReqRes>());
+            p_ptpdata = Marshal.AllocHGlobal(Marshal.SizeOf<PTPData>());
 
             ResetAll();
         }
@@ -146,11 +146,11 @@ namespace PTP
 
             ResetParams();
 
-            err = _device.Reader.Read(p_reqres, 0, Marshal.SizeOf(reqres), 5000, out len);
+            err = _device.Reader.Read(p_reqres, 0, Marshal.SizeOf<PTPReqRes>(), 5000, out len);
 
             CheckError(err);
 
-            reqres = (PTPReqRes) Marshal.PtrToStructure(p_reqres, typeof(PTPReqRes));
+            reqres = Marshal.PtrToStructure<PTPReqRes>(p_reqres);
         }
 
         private void SendData(byte[] data)
@@ -208,7 +208,7 @@ namespace PTP
 
             CheckError(err);
 
-            ptpdata = (PTPData)Marshal.PtrToStructure(p_ptpdata, typeof(PTPData));
+            ptpdata = Marshal.PtrToStructure<PTPData>(p_ptpdata);
 
             if (ptpdata.Length <= 512)
             {

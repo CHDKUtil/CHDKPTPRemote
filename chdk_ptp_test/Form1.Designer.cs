@@ -46,11 +46,8 @@ namespace chdk_ptp_test
             this.tabcontrol = new System.Windows.Forms.TabControl();
             this.scriptpage = new System.Windows.Forms.TabPage();
             this.scriptcontrol = new chdk_ptp_test.ScriptControl();
-            this.picturepage = new System.Windows.Forms.TabPage();
-            this.picturecontrol = new chdk_ptp_test.PictureControl();
             this.tabcontrol.SuspendLayout();
             this.scriptpage.SuspendLayout();
-            this.picturepage.SuspendLayout();
             this.SuspendLayout();
             // 
             // devicecombobox
@@ -167,7 +164,6 @@ namespace chdk_ptp_test
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabcontrol.Controls.Add(this.scriptpage);
-            this.tabcontrol.Controls.Add(this.picturepage);
             this.tabcontrol.Location = new System.Drawing.Point(12, 97);
             this.tabcontrol.Name = "tabcontrol";
             this.tabcontrol.SelectedIndex = 0;
@@ -197,29 +193,6 @@ namespace chdk_ptp_test
             this.scriptcontrol.Size = new System.Drawing.Size(455, 274);
             this.scriptcontrol.TabIndex = 0;
             // 
-            // picturepage
-            // 
-            this.picturepage.Controls.Add(this.picturecontrol);
-            this.picturepage.Location = new System.Drawing.Point(4, 22);
-            this.picturepage.Name = "picturepage";
-            this.picturepage.Padding = new System.Windows.Forms.Padding(3);
-            this.picturepage.Size = new System.Drawing.Size(468, 287);
-            this.picturepage.TabIndex = 1;
-            this.picturepage.Text = "Live";
-            // 
-            // picturecontrol
-            // 
-            this.picturecontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.picturecontrol.Connected = false;
-            this.picturecontrol.Location = new System.Drawing.Point(6, 6);
-            this.picturecontrol.Log = null;
-            this.picturecontrol.Name = "picturecontrol";
-            this.picturecontrol.Session = null;
-            this.picturecontrol.Size = new System.Drawing.Size(456, 275);
-            this.picturecontrol.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -242,7 +215,6 @@ namespace chdk_ptp_test
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabcontrol.ResumeLayout(false);
             this.scriptpage.ResumeLayout(false);
-            this.picturepage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,11 +232,9 @@ namespace chdk_ptp_test
         private System.Windows.Forms.Button shutdownbutton;
         private System.Windows.Forms.Button rebootbutton;
         private System.Windows.Forms.TabControl tabcontrol;
-        private System.Windows.Forms.TabPage picturepage;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage scriptpage;
         private ScriptControl scriptcontrol;
-        private PictureControl picturecontrol;
     }
 }
 

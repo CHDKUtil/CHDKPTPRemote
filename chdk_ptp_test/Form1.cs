@@ -67,7 +67,7 @@ namespace chdk_ptp_test
             if (components == null)
                 components = new Container();
             components.Add(usbComponent);
-            Log = scriptcontrol.Log = picturecontrol.Log = File.AppendText("chdk_ptp_test.log");
+            Log = scriptcontrol.Log = File.AppendText("chdk_ptp_test.log");
             LogLine("=== program started ===");
             UsbDevice.UsbErrorEvent += new EventHandler<UsbError>(UsbDevice_UsbErrorEvent);
         }
@@ -86,7 +86,7 @@ namespace chdk_ptp_test
             {
                 session.Disconnect();
                 connected_device = null;
-                connected = scriptcontrol.Connected = picturecontrol.Connected = false;
+                connected = scriptcontrol.Connected = false;
             }
         }
 
@@ -114,7 +114,7 @@ namespace chdk_ptp_test
             LogLine("opening device: " + connected_device.Name);
             try
             {
-                session = scriptcontrol.Session = picturecontrol.Session = new Session(connected_device);
+                session = scriptcontrol.Session = new Session(connected_device);
                 session.Connect();
             }
             catch (Exception ex)
@@ -127,7 +127,7 @@ namespace chdk_ptp_test
                 return;
             }
             LogLine("connected.");
-            connected = scriptcontrol.Connected = picturecontrol.Connected = true;
+            connected = scriptcontrol.Connected = true;
             connect_button.Visible = false;
             disconnectbutton.Visible = true;
             statuslabel.Text = "Connected to: " + connected_device.ToString();
@@ -158,7 +158,7 @@ namespace chdk_ptp_test
             connected_device = null;
             connect_button.Visible = true;
             disconnectbutton.Visible = false;
-            connected = scriptcontrol.Connected = picturecontrol.Connected = false;
+            connected = scriptcontrol.Connected = false;
         }
 
         private void recordbutton_Click(object sender, EventArgs e)

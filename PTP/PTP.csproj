@@ -8,8 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CHDKPTP\CHDKPTP.csproj" />
-    <ProjectReference Include="..\PTP\PTP.csproj" />
+    <PackageReference Include="CoreCompat.LibUsbDotNet" Version="2.2.8-r102" />
   </ItemGroup>
 
 </Project>

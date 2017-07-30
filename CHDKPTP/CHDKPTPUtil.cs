@@ -64,7 +64,7 @@ namespace CHDKPTP
             if (constr == null)
                 constr = x => new CHDKPTPDevice(x);
 
-            List<CHDKPTPDevice> r = PTPUtil.FindDevices(only_supported, constr).ConvertAll<CHDKPTPDevice>(CheckSupported);
+            List<CHDKPTPDevice> r = PTPUtil.FindDevices(only_supported, constr).Select(CheckSupported).ToList();
 
             if (only_supported)
                 r = r.Where(x => x.CHDKSupported).ToList();
