@@ -33,11 +33,15 @@ namespace chdk_ptp_test
             if (Visible)
             {
                 worker.DoWork += Worker_DoWork;
-                worker.RunWorkerAsync();
                 worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+                if (!worker.IsBusy)
+                    worker.RunWorkerAsync();
             }
             else
+            {
                 worker.DoWork -= Worker_DoWork;
+                worker.RunWorkerCompleted -= Worker_RunWorkerCompleted;
+            }
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -73,7 +77,8 @@ namespace chdk_ptp_test
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            worker.RunWorkerAsync();
+            if (!worker.IsBusy)
+                worker.RunWorkerAsync();
         }
 
         private void RefreshPicture(Image image)
