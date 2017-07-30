@@ -43,32 +43,59 @@ namespace chdk_ptp_test
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             Thread.Yield();
-
-            if (!connected)
-                return;
-
-            session.GetLiveData((int)LIVE_XFER_TYPE.VIEWPORT);
-
-            if (live_image == null)
-                live_image = session.GetLiveImage();
-            else
-                session.GetLiveImage(live_image);
-
+            GetLiveImage();
             Thread.Yield();
-
-            if (!connected)
-                return;
-
-            session.GetLiveData((int)LIVE_XFER_TYPE.BITMAP | (int)LIVE_XFER_TYPE.PALETTE);
-
-            if (live_overlay == null)
-                live_overlay = session.GetLiveOverlay();
-            else
-                session.GetLiveOverlay(live_overlay);
-
+            GetLiveOverlay();
             Thread.Yield();
-
             pictureBox1.BeginInvoke((Action<Image>)RefreshPicture, live_image);
+        }
+
+        private void GetLiveImage()
+        {
+            if (!connected)
+                return;
+
+            bool retry = false;
+            do
+            {
+                try
+                {
+                    session.GetLiveData((int)LIVE_XFER_TYPE.VIEWPORT);
+                    if (live_image == null)
+                        live_image = session.GetLiveImage();
+                    else
+                        session.GetLiveImage(live_image);
+                }
+                catch
+                {
+                    retry = true;
+                }
+            }
+            while (retry);
+        }
+
+        private void GetLiveOverlay()
+        {
+            if (!connected)
+                return;
+
+            bool retry = false;
+            do
+            {
+                try
+                {
+                    session.GetLiveData((int)LIVE_XFER_TYPE.BITMAP | (int)LIVE_XFER_TYPE.PALETTE);
+                    if (live_overlay == null)
+                        live_overlay = session.GetLiveOverlay();
+                    else
+                        session.GetLiveOverlay(live_overlay);
+                }
+                catch
+                {
+                    retry = true;
+                }
+            }
+            while (retry);
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
