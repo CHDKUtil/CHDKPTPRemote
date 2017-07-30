@@ -3,16 +3,14 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
+using CHDKPTP;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.IO;
-using LibUsbDotNet; // XXX needed for call to CHDKPTPUtil.FindDevices
-using CHDKPTP;
 
 namespace CHDKPTPRemote
 {
-    public class Session
+    public class Session : IDisposable
     {
         public static List<CHDKPTPDevice> ListDevices(bool only_supported = true)
         {
@@ -25,6 +23,22 @@ namespace CHDKPTPRemote
         {
             _session = new CHDKPTPSession(dev);
         }
+
+        #region IDisposable Support
+
+        private bool disposedValue = false;
+
+        public void Dispose()
+        {
+            if (!disposedValue)
+            {
+                _session.Dispose();
+
+                disposedValue = true;
+            }
+        }
+
+        #endregion
 
         public void Connect()
         {

@@ -5,10 +5,11 @@
 
 using LibUsbDotNet;
 using LibUsbDotNet.Main;
+using System;
 
 namespace PTP
 {
-    public class PTPDevice
+    public class PTPDevice : IDisposable
     {
         private UsbDevice _Device;
         public UsbDevice Device { get { return _Device; } }
@@ -36,11 +37,36 @@ namespace PTP
             WriterEndpointID = WriteEndpointID.Ep02;
         }
 
+        #region IDisposable Support
+
+        private bool disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                    ((IDisposable)_Device).Dispose();
+
+                if (IsOpen)
+                    Close();
+
+                disposedValue = true;
+            }
+        }
+
         ~PTPDevice()
         {
-            if (IsOpen)
-                Close();
+            Dispose(false);
         }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
 
         public bool Open()
         {

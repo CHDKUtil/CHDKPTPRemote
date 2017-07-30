@@ -10,7 +10,7 @@ using LibUsbDotNet.Main;
 namespace PTP
 {
     // TODO: try to ensure connection is not unnecessarily messed up after error
-    public class PTPCommunication
+    public sealed class PTPCommunication : IDisposable
     {
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         private struct PTPReqRes
@@ -75,11 +75,33 @@ namespace PTP
             ResetAll();
         }
 
+        #region IDisposable Support
+
+        private bool disposedValue = false;
+
+        private void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                Marshal.FreeHGlobal(p_ptpdata);
+                Marshal.FreeHGlobal(p_reqres);
+
+                disposedValue = true;
+            }
+        }
+
         ~PTPCommunication()
         {
-            Marshal.FreeHGlobal(p_ptpdata);
-            Marshal.FreeHGlobal(p_reqres);
+            Dispose(false);
         }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
 
         public void ResetAll()
         {

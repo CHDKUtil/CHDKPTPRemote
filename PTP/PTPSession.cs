@@ -3,9 +3,11 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
+using System;
+
 namespace PTP
 {
-    public class PTPSession
+    public class PTPSession : IDisposable
     {
         private PTPDevice _device;
         public PTPDevice device { get { return _device; } }
@@ -19,6 +21,22 @@ namespace PTP
             ptp = new PTPCommunication(_device);
             _IsOpen = false;
         }
+
+        #region IDisposable Support
+
+        private bool disposedValue = false;
+
+        public void Dispose()
+        {
+            if (!disposedValue)
+            {
+                ptp.Dispose();
+
+                disposedValue = true;
+            }
+        }
+
+        #endregion
 
         public void SendCommand(PTP_Operation op, int num_params, int param1 = 0, int param2 = 0, int param3 = 0, int param4 = 0, int param5 = 0)
         {
