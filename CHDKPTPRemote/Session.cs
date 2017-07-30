@@ -179,5 +179,13 @@ namespace CHDKPTPRemote
 
             return buf;
         }
+
+        public CHDKPTPDevice Device
+        {
+            get
+            {
+                return (CHDKPTPDevice)_session.device;
+            }
+        }
     }
 }
