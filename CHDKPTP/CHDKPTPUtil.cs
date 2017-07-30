@@ -59,15 +59,15 @@ namespace CHDKPTP
             return dev;
         }
 
-        public static List<CHDKPTPDevice> FindDevices(bool only_supported = true, Func<UsbDevice,CHDKPTPDevice> constr = null)
+        public static IEnumerable<CHDKPTPDevice> FindDevices(bool only_supported = true, Func<UsbDevice,CHDKPTPDevice> constr = null)
         {
             if (constr == null)
                 constr = x => new CHDKPTPDevice(x);
 
-            List<CHDKPTPDevice> r = PTPUtil.FindDevices(only_supported, constr).Select(CheckSupported).ToList();
+            IEnumerable<CHDKPTPDevice> r = PTPUtil.FindDevices(only_supported, constr).Select(CheckSupported);
 
             if (only_supported)
-                r = r.Where(x => x.CHDKSupported).ToList();
+                r = r.Where(x => x.CHDKSupported);
 
             return r;
         }

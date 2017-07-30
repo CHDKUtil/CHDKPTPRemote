@@ -12,7 +12,7 @@ namespace CHDKPTPRemote
 {
     public class Session : IDisposable
     {
-        public static List<CHDKPTPDevice> ListDevices(bool only_supported = true)
+        public static IEnumerable<CHDKPTPDevice> ListDevices(bool only_supported = true)
         {
             return CHDKPTPUtil.FindDevices(only_supported);
         }

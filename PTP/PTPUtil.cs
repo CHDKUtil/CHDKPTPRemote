@@ -5,7 +5,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using LibUsbDotNet;
 using LibUsbDotNet.Main;
 using LibUsbDotNet.Descriptors;
@@ -15,7 +14,7 @@ namespace PTP
 {
     public static class PTPUtil
     {
-        public static List<PTPDevice> FindDevices(bool only_supported = true, Func<UsbDevice,PTPDevice> constr = null)
+        public static IEnumerable<PTPDevice> FindDevices(bool only_supported = true, Func<UsbDevice,PTPDevice> constr = null)
         {
             List<PTPDevice> l = new List<PTPDevice>();
 
