@@ -7,6 +7,11 @@
     <Copyright>Copyright © Muck van Weerdenburg 2011</Copyright>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\PTP\PTP.csproj" />
   </ItemGroup>
