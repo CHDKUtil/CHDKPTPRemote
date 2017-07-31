@@ -11,9 +11,8 @@ namespace PTP
 {
     public class PTPDevice : IDisposable
     {
-        private UsbDevice _Device;
-        public UsbDevice Device { get { return _Device; } }
-        public bool IsOpen { get { return _Device.IsOpen; } }
+        public UsbDevice Device { get; }
+        public bool IsOpen { get { return Device.IsOpen; } }
         public UsbEndpointReader Reader;
         public UsbEndpointWriter Writer;
         public byte ConfigurationID;
@@ -21,14 +20,13 @@ namespace PTP
         public ReadEndpointID ReaderEndpointID;
         public WriteEndpointID WriterEndpointID;
         public bool PTPSupported;
-        protected string _Name;
-        public string Name { get { return _Name; } }
+        public string Name { get; }
 
-        public PTPDevice(UsbDevice dev)
+        public PTPDevice(UsbDevice device)
         {
-            _Device = dev;
+            Device = device;
             PTPSupported = false;
-            _Name = dev.Info.ProductString; // TODO: try get better name
+            Name = Device.Info.ProductString; // TODO: try get better name
             Reader = null;
             Writer = null;
             ConfigurationID = 1;
@@ -46,7 +44,7 @@ namespace PTP
             if (!disposedValue)
             {
                 if (disposing)
-                    ((IDisposable)_Device).Dispose();
+                    ((IDisposable)Device).Dispose();
 
                 if (IsOpen)
                     Close();
@@ -73,21 +71,21 @@ namespace PTP
             if (IsOpen)
                 return false;
 
-            if (!_Device.Open())
+            if (!Device.Open())
                 return false;
 
-            IUsbDevice whole = _Device as IUsbDevice;
+            IUsbDevice whole = Device as IUsbDevice;
             if (!ReferenceEquals(whole, null))
             {
                 if (!whole.SetConfiguration(ConfigurationID) || !whole.ClaimInterface(InterfaceID))
                 {
-                    _Device.Close();
+                    Device.Close();
                     throw new PTPException("could not set USB device configuration and interface to " + ConfigurationID + " and " + InterfaceID + ", respectively");
                 }
             }
 
-            Writer = _Device.OpenEndpointWriter(WriterEndpointID);
-            Reader = _Device.OpenEndpointReader(ReaderEndpointID);
+            Writer = Device.OpenEndpointWriter(WriterEndpointID);
+            Reader = Device.OpenEndpointReader(ReaderEndpointID);
 
             return true;
         }
@@ -97,18 +95,18 @@ namespace PTP
             if (!IsOpen)
                 return false;
 
-            IUsbDevice whole = _Device as IUsbDevice;
+            IUsbDevice whole = Device as IUsbDevice;
             if (!ReferenceEquals(whole, null))
             {
                 whole.ReleaseInterface(InterfaceID);
             }
 
-            return _Device.Close();
+            return Device.Close();
         }
 
         public override string ToString()
         {
-            return _Device.Info.ProductString;
+            return Device.Info.ProductString;
         }
     }
 }

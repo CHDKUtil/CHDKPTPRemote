@@ -23,8 +23,7 @@ namespace PTP
 
             foreach (UsbRegistry reg in UsbDevice.AllDevices)
             {
-                UsbDevice dev;
-                if (reg.Open(out dev))
+                if (reg.Open(out UsbDevice dev))
                 {
                     PTPDevice ptpdev = constr(dev);
 

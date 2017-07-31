@@ -9,17 +9,15 @@ namespace PTP
 {
     public class PTPSession : IDisposable
     {
-        private PTPDevice _device;
-        public PTPDevice device { get { return _device; } }
-        private bool _IsOpen;
-        public bool IsOpen { get { return _IsOpen; } }
+        public PTPDevice Device { get; }
+        public bool IsOpen { get; private set; }
         protected PTPCommunication ptp;
 
-        public PTPSession(PTPDevice dev)
+        public PTPSession(PTPDevice device)
         {
-            _device = dev;
-            ptp = new PTPCommunication(_device);
-            _IsOpen = false;
+            Device = device;
+            ptp = new PTPCommunication(Device);
+            IsOpen = false;
         }
 
         #region IDisposable Support
@@ -93,7 +91,7 @@ namespace PTP
             SendCommand(PTP_Operation.PTP_OC_OpenSession, 1, 1);
             Ensure_PTP_RC_OK();
 
-            _IsOpen = true;
+            IsOpen = true;
         }
 
         public void CloseSession()
@@ -101,7 +99,7 @@ namespace PTP
             SendCommand(PTP_Operation.PTP_OC_CloseSession, 0);
             Ensure_PTP_RC_OK();
 
-            _IsOpen = false;
+            IsOpen = false;
         }
     }
 }

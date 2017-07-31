@@ -28,21 +28,22 @@ namespace CHDKPTP
                 if (!dev.Open())
                     return dev;
 
-                CHDKPTPSession sess = new CHDKPTPSession(dev);
-                sess.OpenSession();
-                if (sess.CHDK_Version(out dev.CHDKVersionMajor, out dev.CHDKVersionMinor))
+                using (CHDKPTPSession sess = new CHDKPTPSession(dev))
                 {
-                    if (dev.CHDKVersionMajor == CHDK_VERSION_MAJOR && dev.CHDKVersionMinor >= CHDK_VERSION_MINOR)
+                    sess.OpenSession();
+                    if (sess.CHDK_Version(out dev.CHDKVersionMajor, out dev.CHDKVersionMinor))
                     {
-                        CHDK_ScriptSupport flags;
-                        sess.CHDK_ScriptSupport(out flags);
-                        if (flags.HasFlag(CHDK_ScriptSupport.PTP_CHDK_SCRIPT_SUPPORT_LUA))
+                        if (dev.CHDKVersionMajor == CHDK_VERSION_MAJOR && dev.CHDKVersionMinor >= CHDK_VERSION_MINOR)
                         {
-                            dev.CHDKSupported = true;
+                            sess.CHDK_ScriptSupport(out CHDK_ScriptSupport flags);
+                            if (flags.HasFlag(CHDK_ScriptSupport.PTP_CHDK_SCRIPT_SUPPORT_LUA))
+                            {
+                                dev.CHDKSupported = true;
+                            }
                         }
-                    }
 
-                    sess.CloseSession();
+                        sess.CloseSession();
+                    }
                 }
             }
             catch (PTPException)

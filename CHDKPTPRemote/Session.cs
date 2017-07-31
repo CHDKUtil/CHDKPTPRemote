@@ -19,9 +19,9 @@ namespace CHDKPTPRemote
 
         private CHDKPTPSession _session;
 
-        public Session(CHDKPTPDevice dev)
+        public Session(CHDKPTPDevice device)
         {
-            _session = new CHDKPTPSession(dev);
+            _session = new CHDKPTPSession(device);
         }
 
         #region IDisposable Support
@@ -32,6 +32,9 @@ namespace CHDKPTPRemote
         {
             if (!disposedValue)
             {
+                if (_session.IsOpen)
+                    Disconnect();
+
                 _session.Dispose();
 
                 disposedValue = true;
@@ -42,14 +45,14 @@ namespace CHDKPTPRemote
 
         public void Connect()
         {
-            _session.device.Open();
+            _session.Device.Open();
             try
             {
                 _session.OpenSession();
             }
             catch (Exception e)
             {
-                _session.device.Close();
+                _session.Device.Close();
                 throw e;
             }
         }
@@ -65,19 +68,16 @@ namespace CHDKPTPRemote
             }
             finally
             {
-                _session.device.Close();
+                _session.Device.Close();
             }
         }
 
         // returns return data (if any) unless get_error is true
         private object GetScriptMessage(int script_id, bool return_string_as_byte_array, bool get_error = false)
         {
-            CHDK_ScriptMsgType type;
-            int subtype, script_id2;
-            byte[] data;
             while (true)
             {
-                _session.CHDK_ReadScriptMsg(out type, out subtype, out script_id2, out data);
+                _session.CHDK_ReadScriptMsg(out CHDK_ScriptMsgType type, out int subtype, out int script_id2, out byte[] data);
 
                 if (type == CHDK_ScriptMsgType.PTP_CHDK_S_MSGTYPE_NONE) // no more messages; no return value
                     return null;
@@ -137,9 +137,10 @@ namespace CHDKPTPRemote
         // TODO: should be able to distinguish "real" exceptions and script errors
         public object ExecuteScript(string script, bool return_string_as_byte_array = false)
         {
-            int script_id;
-            CHDK_ScriptErrorType status;
-            _session.CHDK_ExecuteScript(script, CHDK_ScriptLanguage.PTP_CHDK_SL_LUA, out script_id, out status);
+            if (!_session.IsOpen)
+                Connect();
+
+            _session.CHDK_ExecuteScript(script, CHDK_ScriptLanguage.PTP_CHDK_SL_LUA, out int script_id, out CHDK_ScriptErrorType status);
 
             if (status == CHDK_ScriptErrorType.PTP_CHDK_S_ERRTYPE_COMPILE)
             {
@@ -157,8 +158,7 @@ namespace CHDKPTPRemote
             // wait for end
             while (true)
             {
-                CHDK_ScriptStatus flags;
-                _session.CHDK_ScriptStatus(out flags);
+                _session.CHDK_ScriptStatus(out CHDK_ScriptStatus flags);
                 if (!flags.HasFlag(CHDK_ScriptStatus.PTP_CHDK_SCRIPT_STATUS_RUN))
                 {
                     break;
@@ -173,9 +173,7 @@ namespace CHDKPTPRemote
 
         public byte[] DownloadFile(string filename)
         {
-            byte[] buf;
-
-            _session.CHDK_DownloadFile(filename, out buf);
+            _session.CHDK_DownloadFile(filename, out byte[] buf);
 
             return buf;
         }
@@ -184,7 +182,7 @@ namespace CHDKPTPRemote
         {
             get
             {
-                return (CHDKPTPDevice)_session.device;
+                return (CHDKPTPDevice)_session.Device;
             }
         }
     }
